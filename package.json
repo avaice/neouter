@@ -25,6 +25,8 @@
     "@rsbuild/core": "^1.5.17",
     "@rsbuild/plugin-react": "^1.4.1",
     "@tailwindcss/postcss": "^4.1.14",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
     "postcss": "^8.5.6",
     "typescript": "^5.9.3"
   }
