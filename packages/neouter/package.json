@@ -1,0 +1,11 @@
+{
+  "name": "neouter",
+  "version": "0.0.1",
+  "description": "A type-safe router for minimalists",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

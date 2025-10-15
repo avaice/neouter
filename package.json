@@ -1,0 +1,31 @@
+{
+  "name": "neouter-monorepo",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "npm run lint && rsbuild build",
+    "dev": "rsbuild dev --open",
+    "preview": "rsbuild preview",
+    "lint": "biome check ./src"
+  },
+  "workspaces": [
+    "packages/neouter"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwindcss": "^4.1.14"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.6",
+    "@rsbuild/core": "^1.5.17",
+    "@rsbuild/plugin-react": "^1.4.1",
+    "@tailwindcss/postcss": "^4.1.14",
+    "postcss": "^8.5.6",
+    "typescript": "^5.9.3"
+  }
+}
