@@ -5,7 +5,7 @@
   "license": "ISC",
   "description": "A type-safe router for minimalists",
   "main": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "types": "dist/index.d.mts",
   "files": [
     "dist"
   ],
