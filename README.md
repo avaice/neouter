@@ -7,7 +7,7 @@ A type-safe router for minimalists! (になる予定)
 ## Installation
 
 ```bash
-npm i neouter
+npm i @Bocek-Inc/neouter
 ```
 
 ## Usage
