@@ -17,4 +17,15 @@ type Route = {
 
 type Routes = Record<Path, Route>
 
-export type { Routes }
+type ExtractParams<Path extends string> =
+  Path extends `${string}:${infer Param}/${infer Rest}`
+    ? Param | ExtractParams<`/${Rest}`>
+    : Path extends `${string}:${infer Param}`
+      ? Param
+      : never
+
+type ParamsObject<Path extends string> = {
+  [K in ExtractParams<Path>]?: string
+}
+
+export type { Routes, Path, ParamsObject, ExtractParams }
