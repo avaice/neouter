@@ -1,5 +1,6 @@
 import { lazyImport } from 'packages/neouter/src'
 import { About } from './routes/About'
+import { About2 } from './routes/About2'
 import { Home } from './routes/Home'
 import { Post } from './routes/Post'
 import { User } from './routes/User'
@@ -12,6 +13,9 @@ export const routes = {
   },
   '/about': {
     component: About,
+  },
+  '/about-2/:id': {
+    component: About2,
   },
   '/lazy': {
     component: Lazy,
