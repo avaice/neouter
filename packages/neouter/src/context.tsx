@@ -24,6 +24,8 @@ export const RouterProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [])
 
+  console.log('RouterProvider', location)
+
   return (
     <RouterContext.Provider value={{ location, setLocation }}>
       {children}
