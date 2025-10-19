@@ -4,7 +4,7 @@ A type-safe router for minimalists! (になる予定)
 
 **This project is still under development and may be unstable. PLEASE DO NOT USE IT IN PRODUCTION ENVIRONMENTS!!**
 
-## インストール
+## Installation
 
 ```bash
 npm i neouter
