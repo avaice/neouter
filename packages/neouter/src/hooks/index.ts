@@ -1,3 +1,3 @@
 export * from './useCreateRoutes'
-export * from './usePathname'
+export * from './usePathParams'
 export * from './useRouter'

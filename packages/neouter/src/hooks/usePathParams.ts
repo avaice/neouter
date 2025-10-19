@@ -3,7 +3,7 @@ import { RouterContext } from '../context'
 import { extractParams, getMatchedPath } from '../libs'
 import type { ParamsObject } from '../types'
 
-export const usePathname = <
+export const usePathParams = <
   Path extends string,
 >(): ParamsObject<Path> | null => {
   const { location, routes } = useContext(RouterContext)
