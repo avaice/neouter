@@ -1,4 +1,4 @@
-import type { ExtractParams } from 'src/types'
+import type { ExtractParams } from '../types'
 
 export const extractParams = <
   Path extends string,
