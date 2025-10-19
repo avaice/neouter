@@ -17,4 +17,4 @@ type Route = {
 
 type Routes = Record<Path, Route>
 
-export type { Routes }
+export type { Routes, Path }

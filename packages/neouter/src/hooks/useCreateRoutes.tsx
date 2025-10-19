@@ -1,4 +1,5 @@
 import { useContext, useMemo } from 'react'
+import { getMatchedPath } from '../'
 import { RouterContext, RouterProvider } from '../context'
 import type { Routes } from '../types'
 
@@ -10,7 +11,8 @@ const RouteComponent = ({
   notFoundComponent?: React.ReactNode
 }) => {
   const { location } = useContext(RouterContext)
-  const Component = routes[location]?.component
+  const matchedPath = getMatchedPath(routes, location)
+  const Component = matchedPath ? routes[matchedPath]?.component : null
   return Component ? <Component /> : notFoundComponent
 }
 
