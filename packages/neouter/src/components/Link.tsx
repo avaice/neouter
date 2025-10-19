@@ -1,8 +1,8 @@
-import { memo } from 'react'
+import { type ComponentProps, memo } from 'react'
 import { useRouter } from '../hooks'
 
 export const Link = memo(
-  ({ href, children }: { href: string; children: React.ReactNode }) => {
+  ({ href, children, ...props }: ComponentProps<'a'> & { href: string }) => {
     const [, setLocation] = useRouter()
     return (
       <a
@@ -11,6 +11,7 @@ export const Link = memo(
           e.preventDefault()
           setLocation(href)
         }}
+        {...props}
       >
         {children}
       </a>
