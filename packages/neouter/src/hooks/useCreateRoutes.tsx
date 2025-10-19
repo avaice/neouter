@@ -9,8 +9,8 @@ const RouteComponent = ({
   routes: Routes
   notFoundComponent?: React.ReactNode
 }) => {
-  const { path } = useContext(RouterContext)
-  const Component = routes[path]?.component
+  const { location } = useContext(RouterContext)
+  const Component = routes[location]?.component
   return Component ? <Component /> : notFoundComponent
 }
 
