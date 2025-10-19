@@ -1,3 +1,12 @@
+import { usePathname } from 'packages/neouter/src'
+
 export const Post = () => {
-  return <div>Post</div>
+  const params = usePathname<'/users/:userId/posts/:postId'>()
+  return (
+    <div>
+      <p>Post!</p>
+      <p>User ID: {params?.userId}</p>
+      <p>Post ID: {params?.postId}</p>
+    </div>
+  )
 }

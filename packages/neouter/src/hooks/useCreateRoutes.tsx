@@ -28,7 +28,9 @@ export const useCreateRoutes = ({
   const returnValue = useMemo(() => {
     return {
       paths: Object.keys(routes),
-      RouterProvider: RouterProvider,
+      RouterProvider: ({ children }: { children: React.ReactNode }) => (
+        <RouterProvider routes={routes}>{children}</RouterProvider>
+      ),
       Router: () => (
         <RouteComponent
           routes={routes}

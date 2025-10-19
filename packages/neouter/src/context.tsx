@@ -5,13 +5,21 @@ import {
   useEffect,
   useState,
 } from 'react'
+import type { Routes } from './types'
 
 export const RouterContext = createContext<{
   location: string
   setLocation: Dispatch<SetStateAction<string>>
-}>({ location: '', setLocation: () => {} })
+  routes: Routes
+}>({ location: '', setLocation: () => {}, routes: {} })
 
-export const RouterProvider = ({ children }: { children: React.ReactNode }) => {
+export const RouterProvider = ({
+  routes,
+  children,
+}: {
+  routes: Routes
+  children: React.ReactNode
+}) => {
   const [location, setLocation] = useState(window.location.pathname)
 
   useEffect(() => {
@@ -25,7 +33,7 @@ export const RouterProvider = ({ children }: { children: React.ReactNode }) => {
   }, [])
 
   return (
-    <RouterContext.Provider value={{ location, setLocation }}>
+    <RouterContext.Provider value={{ location, setLocation, routes }}>
       {children}
     </RouterContext.Provider>
   )
