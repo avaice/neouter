@@ -11,7 +11,7 @@ type RouteOptions = {
 }
 
 type Route = {
-  component: React.ReactNode | (() => Promise<React.ReactNode>)
+  component: React.ComponentType
   options?: RouteOptions
 }
 
