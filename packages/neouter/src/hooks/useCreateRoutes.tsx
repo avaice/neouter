@@ -1,15 +1,21 @@
 import { useMemo } from 'react'
 import type { Routes } from '../types'
 
-export const useCreateRoutes = ({ routes }: { routes: Routes }) => {
-  const path = '/lazdy'
+export const useCreateRoutes = ({
+  routes,
+  notFoundComponent,
+}: {
+  routes: Routes
+  notFoundComponent?: React.ComponentType
+}) => {
+  const path = '/lazy'
 
   const returnValue = useMemo(() => {
     return {
       paths: Object.keys(routes),
-      Router: routes[path]?.component || (() => <div>Not Found</div>),
+      Router: routes[path]?.component || notFoundComponent || (() => <>404</>),
     }
-  }, [routes[path]])
+  }, [routes[path], notFoundComponent])
 
   return returnValue
 }
