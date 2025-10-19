@@ -1,4 +1,10 @@
-import { createContext, type Dispatch, type SetStateAction, useEffect, useState } from 'react'
+import {
+  createContext,
+  type Dispatch,
+  type SetStateAction,
+  useEffect,
+  useState,
+} from 'react'
 
 export const RouterContext = createContext<{
   location: string
@@ -19,6 +25,8 @@ export const RouterProvider = ({ children }: { children: React.ReactNode }) => {
   }, [])
 
   return (
-    <RouterContext.Provider value={{ location, setLocation }}>{children}</RouterContext.Provider>
+    <RouterContext.Provider value={{ location, setLocation }}>
+      {children}
+    </RouterContext.Provider>
   )
 }

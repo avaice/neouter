@@ -1,9 +1,9 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.2.5/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
   "vcs": {
-    "enabled": true,
+    "enabled": false,
     "clientKind": "git",
-    "useIgnoreFile": true
+    "useIgnoreFile": false
   },
   "files": {
     "ignoreUnknown": false
@@ -11,26 +11,25 @@
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
-    "indentWidth": 2,
-    "lineWidth": 100
+    "indentWidth": 2
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
       "correctness": {
-        "useExhaustiveDependencies": "error",
-        "noUnusedVariables": "error"
-      },
-      "style": {
-        "noNonNullAssertion": "warn",
-        "useConst": "error"
-      },
-      "suspicious": {
-        "noExplicitAny": "warn"
+        "noUnusedImports": {
+          "level": "error",
+          "fix": "safe",
+          "options": {}
+        }
       },
       "nursery": {
-        "useSortedClasses": "error"
+        "useSortedClasses": {
+          "level": "error",
+          "fix": "safe",
+          "options": {}
+        }
       }
     }
   },
@@ -39,12 +38,6 @@
       "quoteStyle": "single",
       "semicolons": "asNeeded",
       "trailingCommas": "es5"
-    }
-  },
-  "json": {
-    "formatter": {
-      "indentStyle": "space",
-      "indentWidth": 2
     }
   },
   "assist": {

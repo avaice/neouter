@@ -28,7 +28,10 @@ export const useCreateRoutes = ({
       paths: Object.keys(routes),
       Router: () => (
         <RouterProvider>
-          <RouteComponent routes={routes} notFoundComponent={<NotFoundComponent />} />
+          <RouteComponent
+            routes={routes}
+            notFoundComponent={<NotFoundComponent />}
+          />
         </RouterProvider>
       ),
     }
