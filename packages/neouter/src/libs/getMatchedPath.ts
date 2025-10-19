@@ -1,11 +1,18 @@
 import type { Path, Routes } from '../'
 
+const regexCache = new Map<string, RegExp>()
 const matchPath = (routes: Routes, path: string) => {
   const paths = Object.keys(routes)
-
-  const regexes = paths.map(
-    (path) => new RegExp(`^${path.replace(/:(\w+)/g, '(\\w+)')}$`)
-  )
+  const regexes = paths.map((routePath) => {
+    if (!regexCache.has(routePath)) {
+      regexCache.set(
+        routePath,
+        new RegExp(`^${routePath.replace(/:(\w+)/g, '(\\w+)')}$`)
+      )
+    }
+    // biome-ignore lint/style/noNonNullAssertion: regexes is not null
+    return regexCache.get(routePath)!
+  })
 
   const matchedPath = regexes.findIndex((regex) => regex.test(path))
   if (matchedPath === -1) return null
