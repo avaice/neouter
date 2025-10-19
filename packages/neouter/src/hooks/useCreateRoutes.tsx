@@ -1,5 +1,18 @@
-import { useMemo } from 'react'
+import { useContext, useMemo } from 'react'
+import { RouterContext, RouterProvider } from '../context'
 import type { Routes } from '../types'
+
+const RouteComponent = ({
+  routes,
+  notFoundComponent,
+}: {
+  routes: Routes
+  notFoundComponent?: React.ReactNode
+}) => {
+  const { path } = useContext(RouterContext)
+  const Component = routes[path]?.component
+  return Component ? <Component /> : notFoundComponent
+}
 
 export const useCreateRoutes = ({
   routes,
@@ -8,14 +21,18 @@ export const useCreateRoutes = ({
   routes: Routes
   notFoundComponent?: React.ComponentType
 }) => {
-  const path = '/lazy'
+  const NotFoundComponent = notFoundComponent || (() => <div>404</div>)
 
   const returnValue = useMemo(() => {
     return {
       paths: Object.keys(routes),
-      Router: routes[path]?.component || notFoundComponent || (() => <>404</>),
+      Router: () => (
+        <RouterProvider>
+          <RouteComponent routes={routes} notFoundComponent={<NotFoundComponent />} />
+        </RouterProvider>
+      ),
     }
-  }, [routes[path], notFoundComponent])
+  }, [routes, NotFoundComponent])
 
   return returnValue
 }
