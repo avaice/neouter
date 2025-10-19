@@ -10,7 +10,6 @@ const RouteComponent = ({
   routes: Routes
   notFoundComponent?: React.ReactNode
 }) => {
-  console.log('RouteComponent')
   const { location } = useContext(RouterContext)
   const matchedPath = getMatchedPath(routes, location)
   const Component = matchedPath ? routes[matchedPath]?.component : null
