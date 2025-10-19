@@ -1,6 +1,6 @@
 {
   "name": "@Bocek-Inc/neouter",
-  "version": "0.0.1-build.3",
+  "version": "0.0.1-build.4",
   "author": "",
   "license": "ISC",
   "description": "A type-safe router for minimalists",
@@ -9,6 +9,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "build": "tsdown",
     "test": "echo \"Error: no test specified\" && exit 1"
