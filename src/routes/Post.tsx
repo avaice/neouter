@@ -1,7 +1,7 @@
-import { usePathname } from 'packages/neouter/src'
+import { useTypedPathname } from 'src/hooks/useTypedPathname'
 
 export const Post = () => {
-  const params = usePathname<'/users/:userId/posts/:postId'>()
+  const params = useTypedPathname('/users/:userId/posts/:postId')
   return (
     <div>
       <p>Post!</p>
