@@ -1,4 +1,4 @@
-import { Link } from 'packages/neouter/src'
+import { Link } from 'src/components/Link'
 
 export const About = () => {
   return (
