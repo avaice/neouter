@@ -1,4 +1,4 @@
-import { Link } from 'packages/neouter/src'
+import { Link } from './Link'
 
 export const Header = () => {
   return (

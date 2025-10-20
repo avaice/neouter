@@ -30,4 +30,26 @@ type ParamsObject<Path extends string> = {
 
 type QueryParamsValueType = 'string' | 'number'
 
-export type { Routes, Path, ParamsObject, ExtractParams, QueryParamsValueType }
+type WithQueryAndHash<Path extends string> =
+  | Path
+  | `${Path}?${string}`
+  | `${Path}#${string}`
+
+type ReplaceParams<Path extends string> =
+  Path extends `${infer Start}:${string}/${infer Rest}`
+    ? `${Start}${string}/${ReplaceParams<Rest>}`
+    : Path extends `${infer Start}:${string}`
+      ? `${Start}${string}`
+      : Path
+
+type AssertPathType<R extends string> = ReplaceParams<R>
+
+export type {
+  Routes,
+  Path,
+  ParamsObject,
+  ExtractParams,
+  QueryParamsValueType,
+  AssertPathType,
+  WithQueryAndHash,
+}
