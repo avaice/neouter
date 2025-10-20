@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react'
-import type { Path } from '../types'
 import { useRouter } from '../hooks'
+import type { Path } from '../types'
 
 export const BaseLink = ({
   href,
@@ -15,6 +15,9 @@ export const BaseLink = ({
       {...restProps}
       onClick={(e) => {
         onClick?.(e)
+        if (e.ctrlKey || e.metaKey) {
+          return
+        }
         if (!e.defaultPrevented) {
           e.preventDefault()
           setLocation(href)
