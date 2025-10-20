@@ -28,4 +28,6 @@ type ParamsObject<Path extends string> = {
   [K in ExtractParams<Path>]?: string
 }
 
-export type { Routes, Path, ParamsObject, ExtractParams }
+type QueryParamsValueType = 'string' | 'number'
+
+export type { Routes, Path, ParamsObject, ExtractParams, QueryParamsValueType }

@@ -9,5 +9,5 @@ export const usePathParams = <
   const { location, routes } = useContext(RouterContext)
   const matchedPath = getMatchedPath(routes, location)
   if (!matchedPath) return null
-  return extractParams(matchedPath, location)
+  return extractParams(matchedPath, location.split('?')[0] ?? location)
 }

@@ -20,17 +20,18 @@ export const RouterProvider = ({
   routes: Routes
   children: React.ReactNode
 }) => {
-  const [location, setLocation] = useState(window.location.pathname)
+  const location = window.location.pathname + window.location.search
+  const [, setLocation] = useState(location)
 
   useEffect(() => {
     const handlePopState = () => {
-      setLocation(window.location.pathname)
+      setLocation(location)
     }
     window.addEventListener('popstate', handlePopState)
     return () => {
       window.removeEventListener('popstate', handlePopState)
     }
-  }, [])
+  }, [location])
 
   return (
     <RouterContext.Provider value={{ location, setLocation, routes }}>
