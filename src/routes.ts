@@ -1,4 +1,4 @@
-import { lazyImport } from 'packages/neouter/src'
+import { lazyImport, redirect } from 'packages/neouter/src'
 import { About } from './routes/About'
 import { About2 } from './routes/About2'
 import { Home } from './routes/Home'
@@ -10,6 +10,9 @@ const { Lazy } = lazyImport(() => import('./routes/lazy'), 'Lazy')
 export const routes = {
   '/': {
     component: Home,
+  },
+  '/index.html': {
+    component: redirect('/'),
   },
   '/about': {
     component: About,
