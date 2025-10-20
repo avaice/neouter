@@ -8,14 +8,18 @@ export const BaseLink = ({
   ...props
 }: ComponentProps<'a'> & { href: Path }) => {
   const [, setLocation] = useRouter()
+  const { onClick, ...restProps } = props
   return (
     <a
       href={href}
+      {...restProps}
       onClick={(e) => {
-        e.preventDefault()
-        setLocation(href)
+        onClick?.(e)
+        if (!e.defaultPrevented) {
+          e.preventDefault()
+          setLocation(href)
+        }
       }}
-      {...props}
     >
       {children}
     </a>
