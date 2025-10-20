@@ -1,5 +1,5 @@
 import type { ComponentProps } from 'react'
-import type { Path } from 'src/types'
+import type { Path } from '../types'
 import { useRouter } from '../hooks'
 
 export const BaseLink = ({
