@@ -20,12 +20,12 @@ export const RouterProvider = ({
   routes: Routes
   children: React.ReactNode
 }) => {
-  const location = window.location.pathname + window.location.search
-  const [, setLocation] = useState(location)
+  const getLocation = () => window.location.pathname + window.location.search
+  const [location, setLocation] = useState(getLocation())
 
   useEffect(() => {
     const handlePopState = () => {
-      setLocation(location)
+      setLocation(getLocation())
     }
     window.addEventListener('popstate', handlePopState)
     return () => {
