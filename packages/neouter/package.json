@@ -4,6 +4,10 @@
   "author": "avaice <avaice@ymail.ne.jp>",
   "license": "ISC",
   "description": "A type-safe router for minimalists",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avaice/neouter"
+  },
   "main": "dist/index.mjs",
   "types": "dist/index.d.mts",
   "files": [
