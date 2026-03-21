@@ -6,26 +6,26 @@ on:
 
 jobs:
   publish:
-    name: Publish to GitHub Packages
+    name: Publish to npm
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
     permissions:
-      packages: write
       contents: read
+      id-token: write
 
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v4.1.0
+        uses: actions/checkout@v6.0.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6.3.0
         with:
-          node-version: 20
-          registry-url: https://npm.pkg.github.com
-          scope: "@Bocek-Inc"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          node-version: '24.x'
+          registry-url: https://registry.npmjs.org
+
+      - name: Update npm to latest version
+        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: npm ci
@@ -33,7 +33,5 @@ jobs:
       - name: Build package
         run: npm run build --workspace packages/neouter
 
-      - name: Publish to GitHub Packages
+      - name: Publish to npm
         run: npm publish --workspace packages/neouter
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
