@@ -1,8 +1,6 @@
 # neouter
 
-neouter($/njuːtər/$, ニョーター) is type-safe router for minimalists! (になる予定)
-
-**This project is still under development and may be unstable. PLEASE DO NOT USE IT IN PRODUCTION ENVIRONMENTS!!**
+neouter($/njuːtər/$, ニョーター) is type-safe router for minimalists!
 
 ## Installation
 
@@ -28,9 +26,11 @@ const routes = {
 
 export const App = () => {
   const { Router, RouterProvider } = useCreateRoutes({ routes });
-  return <RouterProvider>
-    <Router />
-  </RouterProvider>;
+  return (
+    <RouterProvider>
+      <Router />
+    </RouterProvider>
+  );
 };
 ```
 
