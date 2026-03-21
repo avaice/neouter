@@ -7,7 +7,7 @@ neouter($/njuːtər/$, ニョーター) is type-safe router for minimalists! (�
 ## Installation
 
 ```bash
-npm i @Bocek-Inc/neouter
+npm i neouter
 ```
 
 ## Usage
@@ -27,8 +27,10 @@ const routes = {
 };
 
 export const App = () => {
-  const { Router } = useCreateRoutes({ routes });
-  return <Router />;
+  const { Router, RouterProvider } = useCreateRoutes({ routes });
+  return <RouterProvider>
+    <Router />
+  </RouterProvider>;
 };
 ```
 

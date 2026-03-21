@@ -1,7 +1,7 @@
 {
-  "name": "@Bocek-Inc/neouter",
-  "version": "0.1.0",
-  "author": "",
+  "name": "neouter",
+  "version": "0.1.4",
+  "author": "avaice <avaice@ymail.ne.jp>",
   "license": "ISC",
   "description": "A type-safe router for minimalists",
   "main": "dist/index.mjs",
@@ -9,10 +9,6 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "restricted",
-    "registry": "https://npm.pkg.github.com/"
-  },
   "scripts": {
     "build": "tsdown",
     "test": "echo \"Error: no test specified\" && exit 1"
