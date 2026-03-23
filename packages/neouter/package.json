@@ -1,7 +1,18 @@
 {
   "name": "neouter",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "avaice <avaice@ymail.ne.jp>",
+  "keywords": [
+    "react",
+    "typescript",
+    "routing",
+    "router",
+    "async",
+    "location",
+    "title",
+    "tiny",
+    "minimalist"
+  ],
   "license": "ISC",
   "description": "A type-safe router for minimalists",
   "repository": {
