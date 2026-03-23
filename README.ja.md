@@ -2,7 +2,7 @@ Language: [EN](./README.md) / JA
 
 # neouter
 
-neouter($/njuːtər/$, ニョーター) is type-safe router for minimalists!
+neouter($/njuːtər/$, ニョーター) is type-assisted router for minimalists!
 
 ## インストール
 ```bash
