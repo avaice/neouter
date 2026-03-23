@@ -1,4 +1,5 @@
-import { lazyImport, redirect } from 'packages/neouter/src'
+import { lazyImport, redirect } from 'neouter'
+import type { JSX } from 'react'
 import { About } from './routes/About'
 import { About2 } from './routes/About2'
 import { Home } from './routes/Home'
@@ -7,7 +8,16 @@ import { User } from './routes/User'
 
 const { Lazy } = lazyImport(() => import('./routes/lazy'), 'Lazy')
 
-export const routes = {
+type PathPatterns =
+  | '/'
+  | '/index.html'
+  | '/about'
+  | '/about-2/:id'
+  | '/lazy'
+  | '/users/:userId'
+  | '/users/:userId/posts/:postId'
+
+export const routes: Record<PathPatterns, { component: () => JSX.Element }> = {
   '/': {
     component: Home,
   },
@@ -30,3 +40,9 @@ export const routes = {
     component: Post,
   },
 } as const
+
+declare module 'neouter' {
+  interface Register {
+    pathPatterns: PathPatterns
+  }
+}

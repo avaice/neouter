@@ -10,14 +10,18 @@ export const extractParams = <
   const patternParts = pathPattern.split('/')
   const actualParts = actualPath.split('/')
 
-  const result: Record<string, string | undefined> = {}
+  const result: Record<string, string> = {}
 
   patternParts.forEach((part, i) => {
     if (part.startsWith(':')) {
       const key = part.slice(1)
-      result[key] = actualParts[i]
+      const value = actualParts[i]
+      if (!value) {
+        throw new Error('value is nullish')
+      }
+      result[key] = value
     }
   })
 
-  return result as Record<Params, string>
+  return result
 }

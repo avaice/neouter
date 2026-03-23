@@ -1,1 +1,2 @@
-export * from './BaseLink'
+export * from './Link'
+export * from './Title'

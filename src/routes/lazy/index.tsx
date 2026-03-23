@@ -1,3 +1,10 @@
+import { Title } from 'neouter'
+
 export const Lazy = () => {
-  return <div>Lazy</div>
+  return (
+    <div>
+      <Title>Lazy</Title>
+      Lazy
+    </div>
+  )
 }

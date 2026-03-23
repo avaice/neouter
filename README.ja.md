@@ -1,21 +1,19 @@
-Language: EN / [JA](./README.ja.md)
+Language: [EN](./README.md) / JA
 
 # neouter
 
 neouter($/njuːtər/$, ニョーター) is type-safe router for minimalists!
 
-## Installation
-
+## インストール
 ```bash
 npm i neouter
 ```
 
-## Usage
+## 使い方
 
-See the [API Reference](./API.md) for details.
+詳細は [API リファレンス](./API.ja.md) を参照
 
-### Defining Routes
-
+### ルートの定義
 ```tsx
 import { useCreateRoutes } from "neouter";
 
@@ -25,10 +23,10 @@ type PathPatterns =
 
 const routes: Record<PathPatterns, { component: () => JSX.Element }> = {
   "/": {
-    component: () => <div>Hello!</div>,
+    component: () => <div>こんにちは！</div>,
   },
   "/about": {
-    component: () => <div>About</div>,
+    component: () => <div>概要</div>,
   },
 };
 
@@ -48,8 +46,7 @@ export const App = () => {
 };
 ```
 
-### Link
-
+### リンク
 ```tsx
 import { Link } from "neouter";
 
@@ -66,7 +63,7 @@ export const Page = () => {
 };
 ```
 
-### Title
+### タイトル
 ```tsx
 import { Title } from "neouter";
 
@@ -83,6 +80,6 @@ export const Page = () => {
 };
 ```
 
-## Contributing
+## コントリビューション
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md)
+[CONTRIBUTING.md](./CONTRIBUTING.md) をご覧ください

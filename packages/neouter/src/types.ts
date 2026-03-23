@@ -1,4 +1,9 @@
-type Path = string
+// biome-ignore lint/suspicious/noEmptyInterface: TODO
+export interface Register {}
+
+type RegisteredRoutes = Register extends { pathPatterns: infer R } ? R : string
+
+type PathPattern = RegisteredRoutes
 
 enum PreloadType {
   hover,
@@ -15,7 +20,7 @@ type Route = {
   options?: RouteOptions
 }
 
-type Routes = Record<Path, Route>
+type Routes = Record<PathPattern, Route>
 
 type ExtractParams<Path extends string> =
   Path extends `${string}:${infer Param}/${infer Rest}`
@@ -25,7 +30,7 @@ type ExtractParams<Path extends string> =
       : never
 
 type ParamsObject<Path extends string> = {
-  [K in ExtractParams<Path>]?: string
+  [K in ExtractParams<Path>]: string
 }
 
 type QueryParamsValueType = 'string' | 'number'
@@ -35,18 +40,25 @@ type WithQueryAndHash<Path extends string> =
   | `${Path}?${string}`
   | `${Path}#${string}`
 
+type PathChar<S extends string = string> = S extends '' ? never : S
+
 type ReplaceParams<Path extends string> =
   Path extends `${infer Start}:${string}/${infer Rest}`
-    ? `${Start}${string}/${ReplaceParams<Rest>}`
+    ? `${Start}${PathChar}${string}/${ReplaceParams<Rest>}`
     : Path extends `${infer Start}:${string}`
-      ? `${Start}${string}`
+      ? `${Start}${PathChar}${string}`
       : Path
 
 type AssertPathType<R extends string> = ReplaceParams<R>
 
+type Path =
+  | PathPattern
+  | (WithQueryAndHash<AssertPathType<PathPattern>> & { _?: never }) // typescript is bad
+
 export type {
   Routes,
   Path,
+  PathPattern,
   ParamsObject,
   ExtractParams,
   QueryParamsValueType,

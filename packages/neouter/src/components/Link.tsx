@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react'
 import { useRouter } from '../hooks'
 import type { Path } from '../types'
 
-export const BaseLink = ({
+export const Link = ({
   href,
   children,
   ...props
