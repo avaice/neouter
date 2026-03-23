@@ -3,6 +3,9 @@ import { pluginReact } from "@rsbuild/plugin-react";
 
 export default defineConfig({
   plugins: [pluginReact()],
+  html: {
+    title: "Hello, neouter!!"
+  },
   module: {
     rules: [
       {
