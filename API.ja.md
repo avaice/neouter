@@ -9,14 +9,16 @@
 ```tsx
 import { Link } from "neouter";
 
-<Link href="/about" className="link">About</Link>
+<Link href="/about" className="link">
+  About
+</Link>;
 ```
 
-| Prop | 型 | 必須 | 説明 |
-|------|------|------|------|
-| `href` | `Path` | Yes | 遷移先のパス |
-| `children` | `ReactNode` | | リンクの中身 |
-| `...props` | `ComponentProps<'a'>` | | `<a>` タグの全属性 |
+| Prop       | 型                    | 必須 | 説明               |
+| ---------- | --------------------- | ---- | ------------------ |
+| `href`     | `Path`                | Yes  | 遷移先のパス       |
+| `children` | `ReactNode`           |      | リンクの中身       |
+| `...props` | `ComponentProps<'a'>` |      | `<a>` タグの全属性 |
 
 - Ctrl+Click / Cmd+Click で新規タブを開く動作を維持
 - `onClick` を渡した場合、ナビゲーション前に実行される
@@ -31,12 +33,12 @@ import { Link } from "neouter";
 ```tsx
 import { Title } from "neouter";
 
-<Title>ページタイトル</Title>
+<Title>ページタイトル</Title>;
 ```
 
-| Prop | 型 | 必須 | 説明 |
-|------|------|------|------|
-| `children` | `string` | Yes | タイトル |
+| Prop       | 型       | 必須 | 説明     |
+| ---------- | -------- | ---- | -------- |
+| `children` | `string` | Yes  | タイトル |
 
 ---
 
@@ -62,23 +64,23 @@ const { RouterProvider, Router, paths } = useCreateRoutes({
   <Header />
   <Router />
   <Footer />
-</RouterProvider>
+</RouterProvider>;
 ```
 
 #### 引数
 
-| プロパティ | 型 | 必須 | 説明 |
-|------|------|------|------|
-| `routes` | `Routes` | Yes | パスパターンとコンポーネントのマッピング |
-| `notFoundComponent` | `React.ComponentType` | | 404 用コンポーネント（省略時は `<div>404</div>`） |
+| プロパティ          | 型                    | 必須 | 説明                                              |
+| ------------------- | --------------------- | ---- | ------------------------------------------------- |
+| `routes`            | `Routes`              | Yes  | パスパターンとコンポーネントのマッピング          |
+| `notFoundComponent` | `React.ComponentType` |      | 404 用コンポーネント（省略時は `<div>404</div>`） |
 
 #### 戻り値
 
-| プロパティ | 型 | 説明 |
-|------|------|------|
-| `RouterProvider` | `React.ComponentType<{ children: ReactNode }>` | Router Contextを提供するラッパー |
-| `Router` | `React.ComponentType` | マッチしたルートを描画するコンポーネント |
-| `paths` | `string[]` | 登録されたパスパターンの配列 |
+| プロパティ       | 型                                             | 説明                                     |
+| ---------------- | ---------------------------------------------- | ---------------------------------------- |
+| `RouterProvider` | `React.ComponentType<{ children: ReactNode }>` | Router Contextを提供するラッパー         |
+| `Router`         | `React.ComponentType`                          | マッチしたルートを描画するコンポーネント |
+| `paths`          | `string[]`                                     | 登録されたパスパターンの配列             |
 
 ---
 
@@ -100,9 +102,9 @@ setLocation("/about");
 
 #### 戻り値
 
-| 要素 | 型 | 説明 |
-|------|------|------|
-| `location` | `string` | 現在のパス（pathname + search） |
+| 要素          | 型                       | 説明                                         |
+| ------------- | ------------------------ | -------------------------------------------- |
+| `location`    | `string`                 | 現在のパス（pathname + search）              |
 | `setLocation` | `(path: string) => void` | 指定パスへ遷移する関数（`pushState` を使用） |
 
 ---
@@ -117,17 +119,23 @@ import { usePathParams } from "neouter";
 // ルート定義: "/user/:id/:tab"
 // 現在のパス: "/user/123/profile"
 
-const params = usePathParams<"/user/:id/:tab">();
+const params = usePathParams("/user/:id/:tab");
 // => { id: "123", tab: "profile" }
 ```
 
+#### 引数
+
+| 引数   | 型       | 必須 | 説明                     |
+| ------ | -------- | ---- | ------------------------ |
+| `path` | `string` | Yes  | マッチ対象のパスパターン |
+
 #### 戻り値
 
-| 型 | 説明 |
-|------|------|
-| `ParamsObject<Path> \| null` | パスパラメータのオブジェクト。マッチしない場合は `null` |
+| 型                           | 説明                                                                              |
+| ---------------------------- | --------------------------------------------------------------------------------- |
+| `ParamsObject<Path> \| null` | パスパラメータのオブジェクト。現在のパスが指定パターンにマッチしない場合は `null` |
 
-型引数にパスパターンを渡すと、パラメータ名が型レベルで推論される。
+パスパターンにより、パラメータ名が型レベルで推論される。
 
 ---
 
@@ -149,15 +157,15 @@ const params = useQueryParams({
 
 #### 引数
 
-| 引数 | 型 | 必須 | 説明 |
-|------|------|------|------|
-| `expectedTypes` | `Record<string, 'string' \| 'number'>` | Yes | 期待するパラメータ名と型の定義 |
-| `options` | `{ noThrowError?: boolean }` | | `noThrowError: true` で数値変換に失敗したときにエラーを起こさないようにできる |
+| 引数            | 型                                     | 必須 | 説明                                                                          |
+| --------------- | -------------------------------------- | ---- | ----------------------------------------------------------------------------- |
+| `expectedTypes` | `Record<string, 'string' \| 'number'>` | Yes  | 期待するパラメータ名と型の定義                                                |
+| `options`       | `{ noThrowError?: boolean }`           |      | `noThrowError: true` で数値変換に失敗したときにエラーを起こさないようにできる |
 
 #### 戻り値
 
-| 型 | 説明 |
-|------|------|
+| 型                                 | 説明                                                                                                   |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | `Partial<{ [K in keyof T]: ... }>` | パースされたクエリパラメータ。`'number'` 指定のキーは `number` 型、`'string'` 指定のキーは `string` 型 |
 
 `expectedTypes` に含まれないクエリパラメータは無視される。
@@ -179,9 +187,9 @@ const routes = {
 };
 ```
 
-| 引数 | 型 | 必須 | 説明 |
-|------|------|------|------|
-| `path` | `string` | Yes | リダイレクト先のパス |
+| 引数   | 型       | 必須 | 説明                 |
+| ------ | -------- | ---- | -------------------- |
+| `path` | `string` | Yes  | リダイレクト先のパス |
 
 **戻り値:** `React.ComponentType` - ルート定義に渡せるコンポーネント。
 
@@ -194,20 +202,17 @@ const routes = {
 ```tsx
 import { lazyImport } from "neouter";
 
-const { UserPage } = lazyImport(
-  () => import("./pages/UserPage"),
-  "UserPage"
-);
+const { UserPage } = lazyImport(() => import("./pages/UserPage"), "UserPage");
 
 const routes = {
   "/user/:id": { component: UserPage },
 };
 ```
 
-| 引数 | 型 | 必須 | 説明 |
-|------|------|------|------|
-| `factory` | `() => Promise<T>` | Yes | dynamic import を返す関数 |
-| `name` | `U` | Yes | モジュールからエクスポートする名前 |
+| 引数      | 型                 | 必須 | 説明                               |
+| --------- | ------------------ | ---- | ---------------------------------- |
+| `factory` | `() => Promise<T>` | Yes  | dynamic import を返す関数          |
+| `name`    | `U`                | Yes  | モジュールからエクスポートする名前 |
 
 **戻り値:** `{ [name]: React.LazyComponent }` - `React.Suspense` と併用すること。
 
@@ -224,10 +229,10 @@ const params = extractParams("/user/:id/:tab", "/user/123/profile");
 // => { id: "123", tab: "profile" }
 ```
 
-| 引数 | 型 | 必須 | 説明 |
-|------|------|------|------|
-| `pathPattern` | `string` | Yes | `:param` を含むパスパターン |
-| `actualPath` | `string` | Yes | 実際のパス |
+| 引数          | 型       | 必須 | 説明                        |
+| ------------- | -------- | ---- | --------------------------- |
+| `pathPattern` | `string` | Yes  | `:param` を含むパスパターン |
+| `actualPath`  | `string` | Yes  | 実際のパス                  |
 
 **戻り値:** `Record<Params, string>` - パラメータ名をキー、パスの該当部分を値とするオブジェクト。
 
@@ -244,10 +249,10 @@ const matched = getMatchedPath(routes, "/user/123");
 // => "/user/:id"
 ```
 
-| 引数 | 型 | 必須 | 説明 |
-|------|------|------|------|
-| `routes` | `Routes` | Yes | ルート定義オブジェクト |
-| `path` | `string` | Yes | マッチ対象のパス（クエリ文字列含んでも可） |
+| 引数     | 型       | 必須 | 説明                                       |
+| -------- | -------- | ---- | ------------------------------------------ |
+| `routes` | `Routes` | Yes  | ルート定義オブジェクト                     |
+| `path`   | `string` | Yes  | マッチ対象のパス（クエリ文字列含んでも可） |
 
 **戻り値:** `string | null` - マッチしたパスパターン。マッチしない場合は `null`。
 
@@ -262,7 +267,7 @@ const matched = getMatchedPath(routes, "/user/123");
 ### `Routes`
 
 ```typescript
-type Routes = Record<Path, Route>
+type Routes = Record<Path, Route>;
 ```
 
 ルート定義オブジェクト。キーがパスパターン、値が `Route`。
@@ -271,23 +276,23 @@ type Routes = Record<Path, Route>
 
 ```typescript
 type Route = {
-  component: React.ComponentType
-  options?: RouteOptions
-}
+  component: React.ComponentType;
+  options?: RouteOptions;
+};
 ```
 
 ### `Path`
 
 ```typescript
-type Path = string
+type Path = string;
 ```
 
 ### `ParamsObject<Path>`
 
 ```typescript
 type ParamsObject<Path extends string> = {
-  [K in ExtractParams<Path>]?: string
-}
+  [K in ExtractParams<Path>]: string;
+};
 ```
 
 パスパターンから型レベルでパラメータを抽出したオブジェクト型。
@@ -301,13 +306,13 @@ type ExtractParams<Path extends string> = /* ... */
 パス文字列からパラメータ名を再帰的に抽出するユーティリティ型。
 
 ```typescript
-ExtractParams<"/user/:id/:tab"> // => "id" | "tab"
+ExtractParams<"/user/:id/:tab">; // => "id" | "tab"
 ```
 
 ### `QueryParamsValueType`
 
 ```typescript
-type QueryParamsValueType = "string" | "number"
+type QueryParamsValueType = "string" | "number";
 ```
 
 ### `WithQueryAndHash<Path>`
@@ -316,7 +321,7 @@ type QueryParamsValueType = "string" | "number"
 type WithQueryAndHash<Path extends string> =
   | Path
   | `${Path}?${string}`
-  | `${Path}#${string}`
+  | `${Path}#${string}`;
 ```
 
 パスにクエリ文字列やハッシュを付与可能にするユーティリティ型。
@@ -324,7 +329,7 @@ type WithQueryAndHash<Path extends string> =
 ### `AssertPathType<R>`
 
 ```typescript
-type AssertPathType<R extends string> = ReplaceParams<R>
+type AssertPathType<R extends string> = ReplaceParams<R>;
 ```
 
 パスパターン内の `:param` を `string` に置換した型を返すユーティリティ型。
