@@ -23,5 +23,5 @@ export const extractParams = <
     }
   })
 
-  return result as Record<Params, string>
+  return result
 }
