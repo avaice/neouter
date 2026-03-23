@@ -51,6 +51,42 @@ export const Page = () => {
 };
 ```
 
+#### 型補完が効くLinkを作る
+
+`BaseLink` と型ユーティリティを組み合わせて、`href` に登録済みルートのみを受け付ける `Link` コンポーネントを作れます。
+
+```tsx
+// routes.ts
+export const routes = {
+  "/": { component: Home },
+  "/about": { component: About },
+  "/users/:userId": { component: User },
+} as const;
+```
+
+```tsx
+// components/Link.tsx
+import { type AssertPathType, BaseLink, type WithQueryAndHash } from "neouter";
+import type { ComponentProps } from "react";
+import type { routes } from "./routes";
+
+export const Link = <T extends AssertPathType<keyof typeof routes>>(
+  props: Omit<ComponentProps<typeof BaseLink>, "href"> & {
+    href: WithQueryAndHash<T>;
+  }
+): ReturnType<typeof BaseLink> => BaseLink(props);
+```
+
+`AssertPathType` はパスの `:param` 部分を `string` に置換し、`WithQueryAndHash` はクエリ文字列やハッシュの付与を許可します。
+
+```tsx
+<Link href="/about" />            // OK
+<Link href="/about?tab=1" />      // OK
+<Link href="/users/123" />        // OK
+<Link href="/nonexistent" />      // NG
+```
+
+
 
 ### タイトル
 ```tsx

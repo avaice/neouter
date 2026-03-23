@@ -54,6 +54,60 @@ export const Page = () => {
 };
 ```
 
+#### Creating a Type-Safe Link
+
+Combine `BaseLink` with type utilities to create a `Link` component that only accepts registered routes for `href`.
+
+```tsx
+// routes.ts
+export const routes = {
+  "/": { component: Home },
+  "/about": { component: About },
+  "/users/:userId": { component: User },
+} as const;
+```
+
+```tsx
+// components/Link.tsx
+import { type AssertPathType, BaseLink, type WithQueryAndHash } from "neouter";
+import type { ComponentProps } from "react";
+import type { routes } from "./routes";
+
+export const Link = <T extends AssertPathType<keyof typeof routes>>(
+  props: Omit<ComponentProps<typeof BaseLink>, "href"> & {
+    href: WithQueryAndHash<T>;
+  }
+): ReturnType<typeof BaseLink> => BaseLink(props);
+```
+
+`AssertPathType` replaces `:param` segments in the path with `string`, and `WithQueryAndHash` allows appending query strings and hashes.
+
+```tsx
+<Link href="/about" />            // OK
+<Link href="/about?tab=1" />      // OK
+<Link href="/users/123" />        // OK
+<Link href="/nonexistent" />      // NG
+```
+
+
+
+### Title
+```tsx
+import { Title } from "neouter";
+
+export const Page = () => {
+  return (
+    <div>
+      <Title>neouter</Title>
+      <p>
+        neouter is a routing library for people who are obsessed with
+        simplicity😄
+      </p>
+    </div>
+  );
+};
+```
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md)
