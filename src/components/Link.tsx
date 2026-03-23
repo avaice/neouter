@@ -1,8 +1,4 @@
-import {
-  type AssertPathType,
-  BaseLink,
-  type WithQueryAndHash,
-} from 'packages/neouter/src'
+import { type AssertPathType, BaseLink, type WithQueryAndHash } from 'neouter'
 import type { ComponentProps } from 'react'
 import type { routes } from 'src/routes'
 

@@ -1,5 +1,4 @@
-import { useQueryParams } from 'packages/neouter/src'
-import { Title } from 'packages/neouter/src/components/Title'
+import { Title, useQueryParams } from 'neouter'
 import { useTypedPathname } from 'src/hooks/useTypedPathname'
 
 export const About2 = () => {

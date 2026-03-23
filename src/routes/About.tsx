@@ -1,4 +1,4 @@
-import { Title } from 'packages/neouter/src/components/Title'
+import { Title } from 'neouter'
 import { Link } from 'src/components/Link'
 
 export const About = () => {

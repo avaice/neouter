@@ -1,5 +1,5 @@
-import { useCreateRoutes } from 'packages/neouter/src'
 import './global.css'
+import { useCreateRoutes } from 'neouter'
 import { Suspense } from 'react'
 import { Header } from './components/Header'
 import { routes } from './routes'

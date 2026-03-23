@@ -1,4 +1,4 @@
-import { getMatchedPath, usePathParams, useRouter } from 'packages/neouter/src'
+import { getMatchedPath, usePathParams, useRouter } from 'neouter'
 import { routes } from 'src/routes'
 
 export const useTypedPathname: <T extends keyof typeof routes>(
