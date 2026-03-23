@@ -1,5 +1,7 @@
 # neouter
 
+[EN](./README.md) / [JA](./README.ja.md)
+
 neouter($/njuːtər/$, ニョーター) is type-safe router for minimalists!
 
 ## インストール
