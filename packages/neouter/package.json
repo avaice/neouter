@@ -1,6 +1,6 @@
 {
   "name": "neouter",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "author": "avaice <avaice@ymail.ne.jp>",
   "license": "ISC",
   "description": "A type-safe router for minimalists",
