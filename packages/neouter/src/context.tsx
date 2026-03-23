@@ -6,10 +6,10 @@ import {
   useLayoutEffect,
   useState,
 } from 'react'
-import type { Routes } from './types'
+import type { Path, Routes } from './types'
 
 export const RouterContext = createContext<{
-  location: string
+  location: Path
   setLocation: Dispatch<SetStateAction<string>>
   routes: Routes
   initialTitle: string

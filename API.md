@@ -2,19 +2,19 @@
 
 ## Components
 
-### `BaseLink`
+### `Link`
 
 A link component for client-side navigation.
 
 ```tsx
-import { BaseLink } from "neouter";
+import { Link } from "neouter";
 
-<BaseLink href="/about" className="link">About</BaseLink>
+<Link href="/about" className="link">About</Link>
 ```
 
 | Prop | Type | Required | Description |
 |------|------|----------|-------------|
-| `href` | `string` | Yes | Destination path |
+| `href` | `Path` | Yes | Destination path |
 | `children` | `ReactNode` | | Link content |
 | `...props` | `ComponentProps<'a'>` | | All `<a>` tag attributes |
 
@@ -102,8 +102,8 @@ setLocation("/about");
 
 | Element | Type | Description |
 |---------|------|-------------|
-| `location` | `string` | Current path (pathname + search) |
-| `setLocation` | `(path: string) => void` | Function to navigate to the specified path (uses `pushState`) |
+| `location` | `Path` | Current path (pathname + search) |
+| `setLocation` | `(path: Path) => void` | Function to navigate to the specified path (uses `pushState`) |
 
 ---
 

@@ -1,4 +1,9 @@
-type Path = string
+// biome-ignore lint/suspicious/noEmptyInterface: TODO
+export interface Register {}
+
+type RegisteredRoutes = Register extends { pathPatterns: infer R } ? R : string
+
+type PathPattern = RegisteredRoutes
 
 enum PreloadType {
   hover,
@@ -15,7 +20,7 @@ type Route = {
   options?: RouteOptions
 }
 
-type Routes = Record<Path, Route>
+type Routes = Record<PathPattern, Route>
 
 type ExtractParams<Path extends string> =
   Path extends `${string}:${infer Param}/${infer Rest}`
@@ -43,6 +48,8 @@ type ReplaceParams<Path extends string> =
       : Path
 
 type AssertPathType<R extends string> = ReplaceParams<R>
+
+type Path = WithQueryAndHash<AssertPathType<PathPattern>>
 
 export type {
   Routes,

@@ -2,19 +2,19 @@
 
 ## コンポーネント
 
-### `BaseLink`
+### `Link`
 
 クライアントサイドナビゲーション用のリンクコンポーネント。
 
 ```tsx
-import { BaseLink } from "neouter";
+import { Link } from "neouter";
 
-<BaseLink href="/about" className="link">About</BaseLink>
+<Link href="/about" className="link">About</Link>
 ```
 
 | Prop | 型 | 必須 | 説明 |
 |------|------|------|------|
-| `href` | `string` | Yes | 遷移先のパス |
+| `href` | `Path` | Yes | 遷移先のパス |
 | `children` | `ReactNode` | | リンクの中身 |
 | `...props` | `ComponentProps<'a'>` | | `<a>` タグの全属性 |
 

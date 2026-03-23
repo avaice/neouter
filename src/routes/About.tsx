@@ -1,5 +1,4 @@
-import { Title } from 'neouter'
-import { Link } from 'src/components/Link'
+import { Link, Title } from 'neouter'
 
 export const About = () => {
   return (
