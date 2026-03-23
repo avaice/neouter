@@ -15,7 +15,11 @@ npm i neouter
 ```tsx
 import { useCreateRoutes } from "neouter";
 
-const routes = {
+type PathPatterns =
+  | '/'
+  | '/about'
+
+const routes: Record<PathPatterns, { component: () => JSX.Element }> = {
   "/": {
     component: () => <div>こんにちは！</div>,
   },
@@ -23,6 +27,12 @@ const routes = {
     component: () => <div>概要</div>,
   },
 };
+
+declare module 'neouter' {
+  interface Register {
+    pathPatterns: PathPatterns
+  }
+}
 
 export const App = () => {
   const { Router, RouterProvider } = useCreateRoutes({ routes });

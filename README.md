@@ -17,7 +17,11 @@ See the [API Reference](./API.md) for details.
 ```tsx
 import { useCreateRoutes } from "neouter";
 
-const routes = {
+type PathPatterns =
+  | '/'
+  | '/about'
+
+const routes: Record<PathPatterns, { component: () => JSX.Element }> = {
   "/": {
     component: () => <div>Hello!</div>,
   },
@@ -25,6 +29,12 @@ const routes = {
     component: () => <div>About</div>,
   },
 };
+
+declare module 'neouter' {
+  interface Register {
+    pathPatterns: PathPatterns
+  }
+}
 
 export const App = () => {
   const { Router, RouterProvider } = useCreateRoutes({ routes });
