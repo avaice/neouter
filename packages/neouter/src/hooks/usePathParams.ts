@@ -3,9 +3,9 @@ import { RouterContext } from '../context'
 import { extractParams, getMatchedPath } from '../libs'
 import type { ParamsObject, PathPattern } from '../types'
 
-export const usePathParams = (
-  path: PathPattern
-): ParamsObject<PathPattern> | null => {
+export const usePathParams = <T extends PathPattern>(
+  path: T
+): ParamsObject<T> | null => {
   const { location, routes } = useContext(RouterContext)
 
   const matchedPath = getMatchedPath(routes, location)

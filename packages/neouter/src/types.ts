@@ -30,7 +30,7 @@ type ExtractParams<Path extends string> =
       : never
 
 type ParamsObject<Path extends string> = {
-  [K in ExtractParams<Path>]?: string
+  [K in ExtractParams<Path>]: string
 }
 
 type QueryParamsValueType = 'string' | 'number'
