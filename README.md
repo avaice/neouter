@@ -1,6 +1,6 @@
-# neouter
+Language: EN / [JA](./README.ja.md)
 
-[EN](./README.md) / [JA](./README.ja.md)
+# neouter
 
 neouter($/njuːtər/$, ニョーター) is type-safe router for minimalists!
 
