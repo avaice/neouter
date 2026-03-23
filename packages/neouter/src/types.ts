@@ -51,7 +51,9 @@ type ReplaceParams<Path extends string> =
 
 type AssertPathType<R extends string> = ReplaceParams<R>
 
-type Path = WithQueryAndHash<AssertPathType<PathPattern>>
+type Path =
+  | PathPattern
+  | (WithQueryAndHash<AssertPathType<PathPattern>> & { _?: never }) // typescript is bad
 
 export type {
   Routes,
