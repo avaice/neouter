@@ -1,3 +1,10 @@
+import { Title } from 'packages/neouter/src/components/Title'
+
 export const User = () => {
-  return <div>User</div>
+  return (
+    <div>
+      <Title>User</Title>
+      User
+    </div>
+  )
 }

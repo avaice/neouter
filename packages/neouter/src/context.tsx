@@ -3,6 +3,7 @@ import {
   type Dispatch,
   type SetStateAction,
   useEffect,
+  useLayoutEffect,
   useState,
 } from 'react'
 import type { Routes } from './types'
@@ -11,7 +12,8 @@ export const RouterContext = createContext<{
   location: string
   setLocation: Dispatch<SetStateAction<string>>
   routes: Routes
-}>({ location: '', setLocation: () => {}, routes: {} })
+  initialTitle: string
+}>({ location: '', setLocation: () => {}, routes: {}, initialTitle: '' })
 
 export const RouterProvider = ({
   routes,
@@ -22,6 +24,13 @@ export const RouterProvider = ({
 }) => {
   const getLocation = () => window.location.pathname + window.location.search
   const [location, setLocation] = useState(getLocation())
+  const [initialTitle, setInitialTitle] = useState('')
+
+  useLayoutEffect(() => {
+    if (document.title) {
+      setInitialTitle(document.title)
+    }
+  }, [])
 
   useEffect(() => {
     const handlePopState = () => {
@@ -34,7 +43,9 @@ export const RouterProvider = ({
   }, [location])
 
   return (
-    <RouterContext.Provider value={{ location, setLocation, routes }}>
+    <RouterContext.Provider
+      value={{ location, setLocation, routes, initialTitle }}
+    >
       {children}
     </RouterContext.Provider>
   )
