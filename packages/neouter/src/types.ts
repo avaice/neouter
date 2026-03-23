@@ -54,6 +54,7 @@ type Path = WithQueryAndHash<AssertPathType<PathPattern>>
 export type {
   Routes,
   Path,
+  PathPattern,
   ParamsObject,
   ExtractParams,
   QueryParamsValueType,
