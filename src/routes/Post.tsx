@@ -1,11 +1,10 @@
-import { Title, useRouter } from 'neouter'
+import { Title, usePathParams, useRouter } from 'neouter'
 
 import { useCallback } from 'react'
-import { useTypedPathname } from 'src/hooks/useTypedPathname'
 
 export const Post = () => {
   const [, setLocation] = useRouter()
-  const params = useTypedPathname('/users/:userId/posts/:postId')
+  const params = usePathParams('/users/:userId/posts/:postId')
   const handleClickGoHome = useCallback(() => {
     setLocation('/')
   }, [setLocation])
