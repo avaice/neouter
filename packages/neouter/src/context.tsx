@@ -22,8 +22,9 @@ export const RouterProvider = ({
   routes: Routes
   children: React.ReactNode
 }) => {
-  const getLocation = () => window.location.pathname + window.location.search
-  const [location, setLocation] = useState(getLocation())
+  const [location, setLocation] = useState(
+    window.location.pathname + window.location.search
+  )
   const [initialTitle, setInitialTitle] = useState('')
 
   useLayoutEffect(() => {
@@ -34,13 +35,19 @@ export const RouterProvider = ({
 
   useEffect(() => {
     const handlePopState = () => {
-      setLocation(getLocation())
+      console.log(
+        'set',
+        window.location.pathname,
+        'search',
+        window.location.search
+      )
+      setLocation(window.location.pathname + window.location.search)
     }
     window.addEventListener('popstate', handlePopState)
     return () => {
       window.removeEventListener('popstate', handlePopState)
     }
-  }, [location])
+  }, [])
 
   return (
     <RouterContext.Provider
