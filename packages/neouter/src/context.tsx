@@ -35,12 +35,6 @@ export const RouterProvider = ({
 
   useEffect(() => {
     const handlePopState = () => {
-      console.log(
-        'set',
-        window.location.pathname,
-        'search',
-        window.location.search
-      )
       setLocation(window.location.pathname + window.location.search)
     }
     window.addEventListener('popstate', handlePopState)
