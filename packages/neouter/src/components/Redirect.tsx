@@ -1,6 +1,6 @@
 import { useContext, useLayoutEffect } from 'react'
-import type { Path } from '../'
-import { RouterContext } from '../context'
+import { RouterContext } from 'src/context'
+import type { Path } from '..'
 
 const Redirect = ({ path }: { path: Path }) => {
   const { setLocation: _setLocation } = useContext(RouterContext)

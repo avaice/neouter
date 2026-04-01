@@ -1,4 +1,4 @@
-import type { Path, Routes } from '../'
+import type { Path, Routes } from '..'
 
 const regexCache = new Map<string, RegExp>()
 const matchPath = (routes: Routes, path: string) => {

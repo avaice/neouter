@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { RouterContext } from '../context'
-import { extractParams, getMatchedPath } from '../libs'
 import type { ParamsObject, PathPattern } from '../types'
+import { extractParams, getMatchedPath } from '../utils'
 
 export const usePathParams = <T extends PathPattern>(
   path: T

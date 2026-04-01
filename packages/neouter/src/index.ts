@@ -1,4 +1,4 @@
-export * from './components/index'
-export * from './hooks/index'
-export * from './libs/index'
+export * from './components'
+export * from './hooks'
 export * from './types'
+export * from './utils'
