@@ -26,12 +26,13 @@
   ],
   "scripts": {
     "build": "tsdown",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "rstest"
   },
   "peerDependencies": {
     "react": ">=18"
   },
   "devDependencies": {
+    "@rstest/core": "^0.9.5",
     "tsdown": "^0.15.8"
   }
 }
