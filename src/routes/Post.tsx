@@ -1,4 +1,4 @@
-import { Title, usePathParams, useRouter } from 'neouter'
+import { usePathParams, useRouter } from 'neouter'
 
 import { useCallback } from 'react'
 
@@ -10,7 +10,7 @@ export const Post = () => {
   }, [setLocation])
   return (
     <div>
-      <Title>Post</Title>
+      <title>Post</title>
       <p>Post!</p>
       <p>User ID: {params?.userId}</p>
       <p>Post ID: {params?.postId}</p>
