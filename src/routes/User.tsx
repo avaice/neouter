@@ -1,9 +1,7 @@
-import { Title } from 'neouter'
-
 export const User = () => {
   return (
     <div>
-      <Title>User</Title>
+      <title>User</title>
       User
     </div>
   )

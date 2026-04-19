@@ -1,9 +1,7 @@
-import { Title } from 'neouter'
-
 export const Home = () => {
   return (
     <div className="flex items-center justify-center gap-2">
-      <Title>Home</Title>
+      <title>Home</title>
       <img
         src="https://cataas.com/cat?width=300&height=300"
         alt="cat"

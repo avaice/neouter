@@ -1,9 +1,7 @@
-import { Title } from 'neouter'
-
 export const Lazy = () => {
   return (
     <div>
-      <Title>Lazy</Title>
+      <title>Lazy</title>
       Lazy
     </div>
   )
