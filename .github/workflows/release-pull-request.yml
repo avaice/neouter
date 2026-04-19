@@ -23,5 +23,5 @@ jobs:
           GIT_PR_RELEASE_BRANCH_PRODUCTION: release
           GIT_PR_RELEASE_BRANCH_STAGING: develop
           GIT_PR_RELEASE_LABELS: release
-          GIT_PR_RELEASE_TEMPLATE: .github/release_pull_request_template.erb
+          GIT_PR_RELEASE_TEMPLATE: .github/workflows/release_pull_request_template.erb
           TZ: Asia/Tokyo
