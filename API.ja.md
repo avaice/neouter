@@ -26,21 +26,6 @@ import { Link } from "neouter";
 
 ---
 
-### `Title`
-
-ドキュメントのタイトルを変更するコンポーネント。アンマウント時に元のタイトルへ復元する。
-
-```tsx
-import { Title } from "neouter";
-
-<Title>ページタイトル</Title>;
-```
-
-| Prop       | 型       | 必須 | 説明     |
-| ---------- | -------- | ---- | -------- |
-| `children` | `string` | Yes  | タイトル |
-
----
 
 ## Hooks
 

@@ -26,21 +26,6 @@ import { Link } from "neouter";
 
 ---
 
-### `Title`
-
-A component that changes the document title. Restores the original title on unmount.
-
-```tsx
-import { Title } from "neouter";
-
-<Title>Page Title</Title>;
-```
-
-| Prop       | Type     | Required | Description |
-| ---------- | -------- | -------- | ----------- |
-| `children` | `string` | Yes      | Title       |
-
----
 
 ## Hooks
 

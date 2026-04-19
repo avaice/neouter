@@ -67,13 +67,17 @@ export const Page = () => {
 ```
 
 ### Title
+
+You can use native the `<title>` tag anywhere in React.
+https://react.dev/reference/react-dom/components/title
+
 ```tsx
 import { Title } from "neouter";
 
 export const Page = () => {
   return (
     <div>
-      <Title>neouter</Title>
+      <title>neouter</title>
       <p>
         neouter is a routing library for people who are obsessed with
         simplicity😄
