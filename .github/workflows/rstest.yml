@@ -1,4 +1,4 @@
-name: Run rstest on Pull Request
+name: Run Tests
 
 on:
   pull_request:
