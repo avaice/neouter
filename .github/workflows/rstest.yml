@@ -1,0 +1,23 @@
+name: Run rstest on Pull Request
+
+on:
+  pull_request:
+
+jobs:
+  rstest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v6.0.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6.3.0
+        with:
+          node-version: '24.x'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run rstest
+        run: npm run test --workspace packages/neouter
