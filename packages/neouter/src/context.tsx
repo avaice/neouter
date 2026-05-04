@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useState, useTransition } from 'react'
 import type { Path, Routes } from './types'
 import { getMatchedPath } from './utils'
 
@@ -14,6 +14,7 @@ export const RouterProvider = ({
   routes: Routes
   children: React.ReactNode
 }) => {
+  const [, startTransition] = useTransition()
   const [location, setLocation] = useState(
     window.location.pathname + window.location.search
   )
@@ -26,7 +27,9 @@ export const RouterProvider = ({
           const nextPath = destination.pathname + destination.search
           e.intercept({
             async handler() {
-              setLocation(nextPath)
+              startTransition(() => {
+                setLocation(nextPath)
+              })
               const matchedPath = getMatchedPath(routes, nextPath)
               const Component = matchedPath
                 ? routes[matchedPath]?.component
