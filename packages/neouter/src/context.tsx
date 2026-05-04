@@ -1,17 +1,10 @@
-import {
-  createContext,
-  type Dispatch,
-  type SetStateAction,
-  useEffect,
-  useState,
-} from 'react'
+import { createContext, useEffect, useState } from 'react'
 import type { Path, Routes } from './types'
 
 export const RouterContext = createContext<{
   location: Path
-  setLocation: Dispatch<SetStateAction<string>>
   routes: Routes
-}>({ location: '', setLocation: () => {}, routes: {} })
+}>({ location: '', routes: {} })
 
 export const RouterProvider = ({
   routes,
@@ -35,7 +28,7 @@ export const RouterProvider = ({
   }, [])
 
   return (
-    <RouterContext.Provider value={{ location, setLocation, routes }}>
+    <RouterContext.Provider value={{ location, routes }}>
       {children}
     </RouterContext.Provider>
   )

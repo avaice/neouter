@@ -3,15 +3,11 @@ import { RouterContext } from '../context'
 import type { Path } from '../types'
 
 export const useRouter = () => {
-  const { location, setLocation: _setLocation } = useContext(RouterContext)
+  const { location } = useContext(RouterContext)
 
-  const setLocation = useCallback(
-    (path: Path) => {
-      _setLocation(path)
-      window.history.pushState({}, '', path)
-    },
-    [_setLocation]
-  )
+  const setLocation = useCallback((path: Path) => {
+    window.history.pushState({}, '', path)
+  }, [])
 
   return [location, setLocation] as const
 }
