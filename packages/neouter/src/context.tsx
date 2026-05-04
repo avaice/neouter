@@ -18,12 +18,22 @@ export const RouterProvider = ({
   )
 
   useEffect(() => {
-    const handlePopState = () => {
-      setLocation(window.location.pathname + window.location.search)
-    }
-    window.addEventListener('popstate', handlePopState)
-    return () => {
-      window.removeEventListener('popstate', handlePopState)
+    if ('navigation' in window) {
+      const handleNavigate = (e: NavigateEvent) => {
+        if (e.canIntercept) {
+          e.intercept({
+            async handler() {
+              setLocation(window.location.pathname + window.location.search)
+            },
+          })
+        }
+      }
+      navigation.addEventListener('navigate', handleNavigate)
+      return () => {
+        navigation.removeEventListener('navigate', handleNavigate)
+      }
+    } else {
+      // Older browsers will perform a full navigation to the new URL
     }
   }, [])
 
