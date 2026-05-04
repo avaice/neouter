@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
 import type { Path, Routes } from './types'
+import { getMatchedPath } from './utils'
 
 export const RouterContext = createContext<{
   location: Path
@@ -21,9 +22,23 @@ export const RouterProvider = ({
     if ('navigation' in window) {
       const handleNavigate = (e: NavigateEvent) => {
         if (e.canIntercept) {
+          const destination = new URL(e.destination.url)
+          const nextPath = destination.pathname + destination.search
           e.intercept({
             async handler() {
-              setLocation(window.location.pathname + window.location.search)
+              setLocation(nextPath)
+              const matchedPath = getMatchedPath(routes, nextPath)
+              const Component = matchedPath
+                ? routes[matchedPath]?.component
+                : null
+
+              if (
+                Component &&
+                'preload' in Component &&
+                typeof Component.preload === 'function'
+              ) {
+                await Component.preload()
+              }
             },
           })
         }
@@ -35,7 +50,7 @@ export const RouterProvider = ({
     } else {
       // Older browsers will perform a full navigation to the new URL
     }
-  }, [])
+  }, [routes])
 
   return (
     <RouterContext.Provider value={{ location, routes }}>
