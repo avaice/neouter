@@ -8,7 +8,6 @@
     // See also https://aka.ms/tsconfig/module
     "module": "esnext",
     "moduleResolution": "bundler",
-    "baseUrl": ".",
     "target": "esnext",
     "types": [],
     // For nodejs:
