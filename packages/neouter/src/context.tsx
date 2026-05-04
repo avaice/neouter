@@ -22,29 +22,36 @@ export const RouterProvider = ({
   useEffect(() => {
     if ('navigation' in window) {
       const handleNavigate = (e: NavigateEvent) => {
-        if (e.canIntercept) {
-          const destination = new URL(e.destination.url)
-          const nextPath = destination.pathname + destination.search
-          e.intercept({
-            async handler() {
-              startTransition(() => {
-                setLocation(nextPath)
-              })
-              const matchedPath = getMatchedPath(routes, nextPath)
-              const Component = matchedPath
-                ? routes[matchedPath]?.component
-                : null
-
-              if (
-                Component &&
-                'preload' in Component &&
-                typeof Component.preload === 'function'
-              ) {
-                await Component.preload()
-              }
-            },
-          })
+        if (
+          !e.canIntercept ||
+          e.hashChange ||
+          e.downloadRequest !== null ||
+          e.formData
+        ) {
+          return
         }
+
+        const destination = new URL(e.destination.url)
+        const nextPath = destination.pathname + destination.search
+        e.intercept({
+          async handler() {
+            startTransition(() => {
+              setLocation(nextPath)
+            })
+            const matchedPath = getMatchedPath(routes, nextPath)
+            const Component = matchedPath
+              ? routes[matchedPath]?.component
+              : null
+
+            if (
+              Component &&
+              'preload' in Component &&
+              typeof Component.preload === 'function'
+            ) {
+              await Component.preload()
+            }
+          },
+        })
       }
       navigation.addEventListener('navigate', handleNavigate)
       return () => {
