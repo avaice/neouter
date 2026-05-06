@@ -43,9 +43,6 @@ export const RouterProvider = ({
         const nextPath = destination.pathname + destination.search
         e.intercept({
           async handler() {
-            startTransition(() => {
-              setLocation(nextPath)
-            })
             const matchedPath = getMatchedPath(routes, nextPath)
             const Component = matchedPath
               ? routes[matchedPath]?.component
@@ -58,6 +55,9 @@ export const RouterProvider = ({
             ) {
               await Component.preload()
             }
+            startTransition(() => {
+              setLocation(nextPath)
+            })
           },
         })
       }
