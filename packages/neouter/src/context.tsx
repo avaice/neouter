@@ -41,8 +41,21 @@ export const RouterProvider = ({
 
         const destination = new URL(e.destination.url)
         const nextPath = destination.pathname + destination.search
+        const currentPath = new URL(navigation.currentEntry?.url || '')
+        const isSearchChange =
+          normalizePathname(nextPath) ===
+            normalizePathname(window.location.pathname) &&
+          currentPath.search !== destination.search
+
         e.intercept({
           async handler() {
+            if (
+              isSearchChange // Do not mark changes that are only query parameters as a transition
+            ) {
+              setLocation(nextPath)
+              return
+            }
+
             const matchedPath = getMatchedPath(routes, nextPath)
             const Component = matchedPath
               ? routes[matchedPath]?.component
@@ -58,18 +71,9 @@ export const RouterProvider = ({
 
             if (e.signal.aborted) return
 
-            const isSamePath =
-              normalizePathname(nextPath) === normalizePathname(location)
-
-            if (
-              isSamePath // Do not mark changes that are only query parameters as a transition
-            ) {
+            startTransition(() => {
               setLocation(nextPath)
-            } else {
-              startTransition(() => {
-                setLocation(nextPath)
-              })
-            }
+            })
           },
         })
       }
@@ -80,7 +84,7 @@ export const RouterProvider = ({
     } else {
       // Older browsers will perform a full navigation to the new URL
     }
-  }, [routes, location])
+  }, [routes])
 
   return (
     <RouterContext.Provider value={{ location, setLocation, routes }}>
