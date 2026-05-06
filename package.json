@@ -16,8 +16,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "lucide-react": "^1.14.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "swr": "^2.4.1",
     "tailwindcss": "^4.1.14"
   },
   "devDependencies": {

@@ -14,6 +14,7 @@ const RouteComponent = ({
   const matchedPath = getMatchedPath(routes, location)
   const Component = matchedPath ? routes[matchedPath]?.component : null
   const pathname = normalizePathname(location)
+
   return (
     <Fragment key={`neouter-${pathname}`}>
       {Component ? <Component /> : notFoundComponent}

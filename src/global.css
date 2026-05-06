@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+@view-transition {
+  navigation: auto;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+}
+
+.logo {
+  background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

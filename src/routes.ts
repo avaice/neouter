@@ -1,24 +1,17 @@
 import { lazyImport, type RouteComponent, redirect } from 'neouter'
+import { Top } from './routes/_top/'
 import { About } from './routes/About'
-import { About2 } from './routes/About2'
-import { Home } from './routes/Home'
-import { Post } from './routes/Post'
+import { Users } from './routes/Users'
 import { User } from './routes/User'
+import { Post } from './routes/Post'
 
-const { Lazy } = lazyImport(() => import('./routes/lazy'), 'Lazy')
+type PathPatterns = '/' | '/index.html' | '/about' | '/heavy' | '/users' | `/users/:id` | `/users/:userId/posts/:postId`
 
-type PathPatterns =
-  | '/'
-  | '/index.html'
-  | '/about'
-  | '/about-2/:id'
-  | '/lazy'
-  | '/users/:userId'
-  | '/users/:userId/posts/:postId'
+const { Heavy } = lazyImport(() => import('./routes/Heavy'), 'Heavy')
 
 export const routes: Record<PathPatterns, { component: RouteComponent }> = {
   '/': {
-    component: Home,
+    component: Top,
   },
   '/index.html': {
     component: redirect('/'),
@@ -26,13 +19,13 @@ export const routes: Record<PathPatterns, { component: RouteComponent }> = {
   '/about': {
     component: About,
   },
-  '/about-2/:id': {
-    component: About2,
+  '/heavy': {
+    component: Heavy,
   },
-  '/lazy': {
-    component: Lazy,
+  '/users': {
+    component: Users,
   },
-  '/users/:userId': {
+  '/users/:id': {
     component: User,
   },
   '/users/:userId/posts/:postId': {

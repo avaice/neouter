@@ -1,18 +1,21 @@
-import { defineConfig } from "@rsbuild/core";
-import { pluginReact } from "@rsbuild/plugin-react";
+import { defineConfig } from '@rsbuild/core'
+import { pluginReact } from '@rsbuild/plugin-react'
 
 export default defineConfig({
   plugins: [pluginReact()],
   html: {
-    title: "Hello, neouter!!"
+    template: 'src/index.html',
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ["postcss-loader"],
-        type: "css",
+        use: ['postcss-loader'],
+        type: 'css',
       },
     ],
   },
-});
+  output: {
+    dataUriLimit: 9999999999, // for /heavy
+  },
+})

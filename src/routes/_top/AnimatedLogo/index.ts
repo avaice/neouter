@@ -1,0 +1,1 @@
+export { AnimatedLogo } from './AnimatedLogo'
