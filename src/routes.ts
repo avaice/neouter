@@ -1,7 +1,7 @@
 import { lazyImport, type RouteComponent, redirect } from 'neouter'
+import { Top } from './routes/_top/'
 import { About } from './routes/About'
 import { About2 } from './routes/About2'
-import { Home } from './routes/Home'
 import { Post } from './routes/Post'
 import { User } from './routes/User'
 
@@ -18,7 +18,7 @@ type PathPatterns =
 
 export const routes: Record<PathPatterns, { component: RouteComponent }> = {
   '/': {
-    component: Home,
+    component: Top,
   },
   '/index.html': {
     component: redirect('/'),
