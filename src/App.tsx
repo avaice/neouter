@@ -11,7 +11,7 @@ export const App = () => {
       <div className="mx-auto max-w-[800px] p-4">
         <Header />
         <div className="mt-4">
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<p>Loading...</p>}>
             <Router />
           </Suspense>
         </div>
