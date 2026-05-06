@@ -1,0 +1,10 @@
+"neouter" is a modern, easy-to-use new routing library.
+
+・Based on Navigation API
+・Type completion available for Link href
+・Ability to retrieve path params and query params with types
+・Supports asynchronous loading
+・Very simple API close to HTML standard conventions
+・zero-dependency, ~2KB gzipped
+
+With a simple API, you can develop SPAs with excellent UX.

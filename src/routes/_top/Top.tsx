@@ -9,7 +9,7 @@ export const Top = () => {
         <p>A type-assisted & modern router for minimalists!!</p>
         <div className="flex gap-2 text-sm md:text-base">
           <Link
-            href="/about"
+            href="/about?lang=en"
             className="mt-4 inline-block rounded-[20px] border border-gray-300 px-6 py-2 transition hover:bg-gray-50"
           >
             What is neouter?
