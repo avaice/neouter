@@ -48,7 +48,7 @@ const UserContent = ({ userId }: { userId: number }) => {
 export const User = () => {
   const params = usePathParams('/users/:id')
   const userId = params ? Number(params.id) : undefined
-  if (userId === undefined) {
+  if (userId === undefined || Number.isNaN(userId)) {
     return (
       <Layout>
         <p className="text-red-500">Invalid user ID</p>

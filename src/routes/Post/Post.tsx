@@ -44,7 +44,7 @@ export const Post = () => {
   const params = usePathParams('/users/:userId/posts/:postId')
   const postId = params ? Number(params.postId) : undefined
 
-  if (postId === undefined) {
+  if (postId === undefined || Number.isNaN(postId)) {
     return (
       <Layout>
         <p className="text-red-500">Invalid post ID</p>
