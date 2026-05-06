@@ -41,6 +41,7 @@ export const Users = () => {
       <div className="space-y-6">
         <title>neouter friends</title>
         <h1 className="text-4xl">neouter friends</h1>
+        <p>An example of path params routing</p>
         <Suspense
           fallback={
             <div className="grid h-[300px] place-items-center">

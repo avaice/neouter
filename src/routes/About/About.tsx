@@ -19,7 +19,7 @@ const Description = ({ lang }: { lang: string }) => {
   }
   return (
     <div>
-      <p className="whitespace-pre">{data}</p>
+      <p className="whitespace-pre-wrap">{data}</p>
     </div>
   )
 }
