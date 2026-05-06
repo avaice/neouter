@@ -1,5 +1,5 @@
-import { useContext, useMemo } from 'react'
-import { getMatchedPath } from '../'
+import { Fragment, useContext, useMemo } from 'react'
+import { getMatchedPath, normalizePathname } from '../'
 import { RouterContext, RouterProvider } from '../context'
 import type { Routes } from '../types'
 
@@ -13,7 +13,12 @@ const RouteComponent = ({
   const { location } = useContext(RouterContext)
   const matchedPath = getMatchedPath(routes, location)
   const Component = matchedPath ? routes[matchedPath]?.component : null
-  return Component ? <Component /> : notFoundComponent
+  const pathname = normalizePathname(location)
+  return (
+    <Fragment key={`neouter-${pathname}`}>
+      {Component ? <Component /> : notFoundComponent}
+    </Fragment>
+  )
 }
 
 export const useCreateRoutes = ({
