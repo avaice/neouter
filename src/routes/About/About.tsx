@@ -1,5 +1,5 @@
 import { Loader2 } from 'lucide-react'
-import { useQueryParams } from 'neouter'
+import { useQueryParams, useRouter } from 'neouter'
 import { Suspense, useState } from 'react'
 import useSWR from 'swr'
 import { Layout } from '../../components/Layout'
@@ -7,9 +7,13 @@ import { getAboutData } from '../../loaders/getAboutData'
 
 const Description = ({ lang }: { lang: string }) => {
   const isSupported = lang === 'en' || lang === 'ja'
-  const { data } = useSWR(isSupported ? `/about-${lang}.txt` : null, getAboutData, {
-    suspense: true,
-  })
+  const { data } = useSWR(
+    isSupported ? `/about-${lang}.txt` : null,
+    getAboutData,
+    {
+      suspense: true,
+    }
+  )
   if (!isSupported) {
     return <p className="text-red-500">Unsupported language</p>
   }
@@ -23,6 +27,7 @@ const Description = ({ lang }: { lang: string }) => {
 export const About = () => {
   const { lang } = useQueryParams({ lang: 'string' })
   const [counter, setCounter] = useState(0)
+  const [, setLocation] = useRouter()
 
   return (
     <Layout>
@@ -36,7 +41,7 @@ export const About = () => {
                 ? 'border-gray-300 bg-gray-800 text-white hover:bg-black'
                 : 'border-gray-300 hover:bg-gray-50'
             }`}
-            onClick={() => history.replaceState(null, '', '?lang=en')}
+            onClick={() => setLocation('/about?lang=en')}
             type="button"
           >
             English
@@ -47,7 +52,7 @@ export const About = () => {
                 ? 'border-gray-300 bg-gray-800 text-white hover:bg-black'
                 : 'border-gray-300 hover:bg-gray-50'
             }`}
-            onClick={() => history.replaceState(null, '', '?lang=ja')}
+            onClick={() => setLocation('/about?lang=ja')}
             type="button"
           >
             日本語
