@@ -55,6 +55,9 @@ export const RouterProvider = ({
             ) {
               await Component.preload()
             }
+
+            if (e.signal.aborted) return
+
             startTransition(() => {
               setLocation(nextPath)
             })
