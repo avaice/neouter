@@ -8,7 +8,9 @@ export const Top = () => {
       <div className="flex flex-col items-center gap-2">
         <SquareArrowOutUpRightIcon className="size-[96px] text-blue-700" />
         <AnimatedLogo />
-        <p>A type-assisted & modern router for minimalists!!</p>
+        <p className="text-center">
+          A type-assisted & modern router for minimalists!!
+        </p>
         <div className="flex gap-2 text-sm md:text-base">
           <Link
             href="/about?lang=en"
