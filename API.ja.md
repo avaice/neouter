@@ -241,9 +241,32 @@ const matched = getMatchedPath(routes, "/user/123");
 
 **戻り値:** `string | null` - マッチしたパスパターン。マッチしない場合は `null`。
 
-- 末尾スラッシュは自動で除去される
-- クエリ文字列はマッチング前に除去される
+- 渡されたパスはマッチング前に `normalizePathname` で正規化される
 - 正規表現はキャッシュされる
+
+---
+
+### `normalizePathname`
+
+ロケーション文字列を、ルートマッチングに使えるパス名に正規化する。
+
+```tsx
+import { normalizePathname } from "neouter";
+
+normalizePathname("/about/?page=1"); // => "/about"
+normalizePathname("/");              // => "/"
+normalizePathname("");               // => null
+```
+
+| 引数   | 型       | 必須 | 説明                                       |
+| ------ | -------- | ---- | ------------------------------------------ |
+| `path` | `string` | Yes  | 生のパス（クエリ文字列を含んでも可）       |
+
+**戻り値:** `string | null` - 正規化されたパス名。空文字列の場合は `null`。
+
+- クエリ文字列（`?` 以降）は除去される
+- 末尾のスラッシュは除去される（ただしルートパス `/` は除く）
+- 入力が空文字列の場合は `null` を返す
 
 ---
 
