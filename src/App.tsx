@@ -1,5 +1,6 @@
 import './global.css'
 import { useCreateRoutes } from 'neouter'
+import { Suspense } from 'react'
 import { Header } from './components/Header'
 import { routes } from './routes'
 
@@ -10,7 +11,9 @@ export const App = () => {
       <div className="mx-auto max-w-[800px] p-4">
         <Header />
         <div className="mt-4">
-          <Router />
+          <Suspense fallback={<p>Loading...</p>}>
+            <Router />
+          </Suspense>
         </div>
       </div>
     </RouterProvider>
