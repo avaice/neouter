@@ -28,7 +28,7 @@ const UserContent = ({ userId }: { userId: number }) => {
             {user.posts.map((post) => (
               <li key={post.id}>
                 <Link
-                  href={`/posts/${post.id}`}
+                  href={`/users/${userId}/posts/${post.id}`}
                   className="block rounded border border-gray-300 p-3 transition hover:bg-gray-50"
                 >
                   <h3 className="font-semibold text-blue-600">{post.title}</h3>

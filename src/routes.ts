@@ -5,7 +5,7 @@ import { Users } from './routes/Users'
 import { User } from './routes/User'
 import { Post } from './routes/Post'
 
-type PathPatterns = '/' | '/index.html' | '/about' | '/heavy' | '/users' | `/users/:id` | `/posts/:id`
+type PathPatterns = '/' | '/index.html' | '/about' | '/heavy' | '/users' | `/users/:id` | `/users/:userId/posts/:postId`
 
 const { Heavy } = lazyImport(() => import('./routes/Heavy'), 'Heavy')
 
@@ -28,7 +28,7 @@ export const routes: Record<PathPatterns, { component: RouteComponent }> = {
   '/users/:id': {
     component: User,
   },
-  '/posts/:id': {
+  '/users/:userId/posts/:postId': {
     component: Post,
   },
 } as const

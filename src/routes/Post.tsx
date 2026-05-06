@@ -41,8 +41,8 @@ const PostContent = ({ postId }: { postId: number }) => {
 }
 
 export const Post = () => {
-  const params = usePathParams('/posts/:id')
-  const postId = params ? Number(params.id) : undefined
+  const params = usePathParams('/users/:userId/posts/:postId')
+  const postId = params ? Number(params.postId) : undefined
 
   if (postId === undefined) {
     return (
