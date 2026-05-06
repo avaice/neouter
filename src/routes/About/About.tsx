@@ -6,10 +6,11 @@ import { Layout } from '../../components/Layout'
 import { getAboutData } from '../../loaders/getAboutData'
 
 const Description = ({ lang }: { lang: string }) => {
-  const { data } = useSWR(`/about-${lang}.txt`, getAboutData, {
+  const isSupported = lang === 'en' || lang === 'ja'
+  const { data } = useSWR(isSupported ? `/about-${lang}.txt` : null, getAboutData, {
     suspense: true,
   })
-  if (lang !== 'en' && lang !== 'ja') {
+  if (!isSupported) {
     return <p className="text-red-500">Unsupported language</p>
   }
   return (
