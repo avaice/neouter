@@ -1,3 +1,4 @@
+import { SquareArrowOutUpRightIcon } from 'lucide-react'
 import { Link } from 'neouter'
 import { AnimatedLogo } from './AnimatedLogo'
 
@@ -5,6 +6,7 @@ export const Top = () => {
   return (
     <div className="grid min-h-svh place-items-center">
       <div className="flex flex-col items-center gap-2">
+        <SquareArrowOutUpRightIcon className="size-[96px] text-blue-700" />
         <AnimatedLogo />
         <p>A type-assisted & modern router for minimalists!!</p>
         <div className="flex gap-2 text-sm md:text-base">
