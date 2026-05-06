@@ -3,19 +3,10 @@ import { useQueryParams } from 'neouter'
 import { Suspense, useState } from 'react'
 import useSWR from 'swr'
 import { Layout } from '../../components/Layout'
-
-const getData = async (url: string) => {
-  // wait 1s
-  await new Promise((resolve) => setTimeout(resolve, 1000))
-  const res = await fetch(url)
-  if (!res.ok) {
-    throw new Error('Failed to fetch user data')
-  }
-  return res.text()
-}
+import { getAboutData } from '../../loaders/getAboutData'
 
 const Description = ({ lang }: { lang: string }) => {
-  const { data } = useSWR(`/about-${lang}.txt`, getData, {
+  const { data } = useSWR(`/about-${lang}.txt`, getAboutData, {
     suspense: true,
   })
   if (lang !== 'en' && lang !== 'ja') {
