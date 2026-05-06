@@ -2,8 +2,8 @@ import { Loader2 } from 'lucide-react'
 import { Link, usePathParams } from 'neouter'
 import { Suspense } from 'react'
 import useSWR from 'swr'
-import { Layout } from '../components/Layout'
-import { getUserData } from '../loaders/getUserData'
+import { Layout } from '../../components/Layout'
+import { getUserData } from '../../loaders/getUserData'
 
 const UserContent = ({ userId }: { userId: number }) => {
   const { data: user } = useSWR(`user-${userId}`, () => getUserData(userId), {

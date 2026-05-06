@@ -2,9 +2,9 @@ import { Loader2 } from 'lucide-react'
 import { Link, usePathParams } from 'neouter'
 import { Suspense } from 'react'
 import useSWR from 'swr'
-import { Layout } from '../components/Layout'
-import { getPostData } from '../loaders/getPostData'
-import { getUsersData } from '../loaders/getUsersData'
+import { Layout } from '../../components/Layout'
+import { getPostData } from '../../loaders/getPostData'
+import { getUsersData } from '../../loaders/getUsersData'
 
 const PostContent = ({ postId }: { postId: number }) => {
   const { data: post } = useSWR(`post-${postId}`, () => getPostData(postId), {
