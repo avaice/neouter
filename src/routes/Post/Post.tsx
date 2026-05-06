@@ -6,7 +6,7 @@ import { Layout } from '../../components/Layout'
 import { getPostData } from '../../loaders/getPostData'
 import { getUsersData } from '../../loaders/getUsersData'
 
-const PostContent = ({ postId }: { postId: number }) => {
+const PostContent = ({ userId, postId }: { userId: number; postId: number }) => {
   const { data: post } = useSWR(`post-${postId}`, () => getPostData(postId), {
     suspense: true,
   })
@@ -20,18 +20,20 @@ const PostContent = ({ postId }: { postId: number }) => {
 
   const author = users.find((user) => user.posts.some((p) => p.id === postId))
 
+  if (!author || author.id !== userId) {
+    return <p className="text-red-500">Post not found</p>
+  }
+
   return (
     <div className="space-y-6">
       <article>
         <h1 className="mb-2 font-bold text-3xl">{post.title}</h1>
-        {author && (
-          <Link
-            href={`/users/${author.id}`}
-            className="text-blue-600 text-sm hover:underline"
-          >
-            by {author.name}
-          </Link>
-        )}
+        <Link
+          href={`/users/${author.id}`}
+          className="text-blue-600 text-sm hover:underline"
+        >
+          by {author.name}
+        </Link>
         <div className="mt-6 whitespace-pre-wrap text-gray-700">
           {post.content}
         </div>
@@ -42,9 +44,15 @@ const PostContent = ({ postId }: { postId: number }) => {
 
 export const Post = () => {
   const params = usePathParams('/users/:userId/posts/:postId')
+  const userId = params ? Number(params.userId) : undefined
   const postId = params ? Number(params.postId) : undefined
 
-  if (postId === undefined || Number.isNaN(postId)) {
+  if (
+    userId === undefined ||
+    Number.isNaN(userId) ||
+    postId === undefined ||
+    Number.isNaN(postId)
+  ) {
     return (
       <Layout>
         <p className="text-red-500">Invalid post ID</p>
@@ -63,7 +71,7 @@ export const Post = () => {
             </div>
           }
         >
-          <PostContent postId={postId} />
+          <PostContent userId={userId} postId={postId} />
           <button
             type="button"
             onClick={() => window.history.back()}
