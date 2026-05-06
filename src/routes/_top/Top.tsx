@@ -20,6 +20,7 @@ export const Top = () => {
             href="https://github.com/avaice/neouter"
             className="mt-4 inline-flex rounded-[20px] border border-gray-300 bg-gray-800 px-6 py-2 text-white transition hover:bg-black"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <img
               src="/github.svg"

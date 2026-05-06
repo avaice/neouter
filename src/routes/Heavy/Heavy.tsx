@@ -11,6 +11,7 @@ export const Heavy = () => {
         <Link
           href="https://unsplash.com/photos/yellow-labrador-retriever-biting-yellow-tulip-flower-Sg3XwuEpybU"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <img
             src={DogAsset}
