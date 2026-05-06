@@ -7,7 +7,7 @@ import {
   useTransition,
 } from 'react'
 import type { Path, Routes } from './types'
-import { getMatchedPath } from './utils'
+import { getMatchedPath, normalizePathname } from './utils'
 
 export const RouterContext = createContext<{
   location: Path
@@ -41,8 +41,21 @@ export const RouterProvider = ({
 
         const destination = new URL(e.destination.url)
         const nextPath = destination.pathname + destination.search
+        const currentPath = new URL(navigation.currentEntry?.url || '')
+        const isSearchChange =
+          normalizePathname(nextPath) ===
+            normalizePathname(window.location.pathname) &&
+          currentPath.search !== destination.search
+
         e.intercept({
           async handler() {
+            if (
+              isSearchChange // Do not mark changes that are only query parameters as a transition
+            ) {
+              setLocation(nextPath)
+              return
+            }
+
             const matchedPath = getMatchedPath(routes, nextPath)
             const Component = matchedPath
               ? routes[matchedPath]?.component
