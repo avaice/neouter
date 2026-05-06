@@ -7,7 +7,7 @@ import {
   useTransition,
 } from 'react'
 import type { Path, Routes } from './types'
-import { getMatchedPath } from './utils'
+import { getMatchedPath, normalizePathname } from './utils'
 
 export const RouterContext = createContext<{
   location: Path
@@ -58,9 +58,18 @@ export const RouterProvider = ({
 
             if (e.signal.aborted) return
 
-            startTransition(() => {
+            const isSamePath =
+              normalizePathname(nextPath) === normalizePathname(location)
+
+            if (
+              isSamePath // Do not mark changes that are only query parameters as a transition
+            ) {
               setLocation(nextPath)
-            })
+            } else {
+              startTransition(() => {
+                setLocation(nextPath)
+              })
+            }
           },
         })
       }
@@ -71,7 +80,7 @@ export const RouterProvider = ({
     } else {
       // Older browsers will perform a full navigation to the new URL
     }
-  }, [routes])
+  }, [routes, location])
 
   return (
     <RouterContext.Provider value={{ location, setLocation, routes }}>
