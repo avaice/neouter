@@ -27,6 +27,9 @@ export const Top = () => {
             GitHub
           </Link>
         </div>
+        <Link href="/heavy" className="mt-4 text-blue-500 hover:underline">
+          I love animals!
+        </Link>
       </div>
     </div>
   )

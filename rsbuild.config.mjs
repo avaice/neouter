@@ -15,4 +15,7 @@ export default defineConfig({
       },
     ],
   },
+  output: {
+    dataUriLimit: 9999999999, // for /heavy
+  },
 })
