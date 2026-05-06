@@ -1,3 +1,5 @@
+import type { ComponentType, JSX, LazyExoticComponent } from 'react'
+
 // biome-ignore lint/suspicious/noEmptyInterface: TODO
 export interface Register {}
 
@@ -55,6 +57,13 @@ type Path =
   | PathPattern
   | (WithQueryAndHash<AssertPathType<PathPattern>> & { _?: never }) // typescript is bad
 
+type PreloadableComponent<T extends ComponentType = ComponentType> =
+  LazyExoticComponent<T> & {
+    preload?: () => Promise<unknown>
+  }
+
+type RouteComponent = (() => JSX.Element) | PreloadableComponent
+
 export type {
   Routes,
   Path,
@@ -64,4 +73,6 @@ export type {
   QueryParamsValueType,
   AssertPathType,
   WithQueryAndHash,
+  PreloadableComponent,
+  RouteComponent,
 }

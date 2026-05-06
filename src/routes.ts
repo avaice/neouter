@@ -1,5 +1,4 @@
-import { lazyImport, redirect } from 'neouter'
-import type { JSX } from 'react'
+import { lazyImport, type RouteComponent, redirect } from 'neouter'
 import { About } from './routes/About'
 import { About2 } from './routes/About2'
 import { Home } from './routes/Home'
@@ -17,7 +16,7 @@ type PathPatterns =
   | '/users/:userId'
   | '/users/:userId/posts/:postId'
 
-export const routes: Record<PathPatterns, { component: () => JSX.Element }> = {
+export const routes: Record<PathPatterns, { component: RouteComponent }> = {
   '/': {
     component: Home,
   },
