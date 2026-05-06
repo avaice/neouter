@@ -4,8 +4,15 @@
   navigation: auto;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 html {
   font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
 }
 
 .logo {
