@@ -54,6 +54,7 @@ type ReplaceParams<Path extends string> =
 type AssertPathType<R extends string> = ReplaceParams<R>
 
 type Path =
+  | `#${string}` // for hash links
   | `${string}://${string}` // for external links
   | PathPattern
   | (WithQueryAndHash<AssertPathType<PathPattern>> & { _?: never }) // typescript is bad
