@@ -8,7 +8,7 @@ const matchPath = (routes: Routes, path: string) => {
     if (!regexCache.has(routePath)) {
       regexCache.set(
         routePath,
-        new RegExp(`^${routePath.replace(/:(\w+)/g, '(\\w+)')}$`)
+        new RegExp(`^${routePath.replace(/:(\w+)/g, '([^/]+)')}$`)
       )
     }
     // biome-ignore lint/style/noNonNullAssertion: regexes is not null
