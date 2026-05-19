@@ -1,0 +1,10 @@
+「neouter」は、モダン使いやすい新しいルーティングライブラリです。
+
+・Navigation APIベース
+・Linkのhrefを型補完可能
+・path params, query paramsを型付きで取得可能
+・非同期読み込みに対応
+・HTML標準の書き方に近い、非常にシンプルなAPI
+・zero-dependency, ~2KB gzipped
+
+シンプルなAPIで、非常にUXの高いSPAを開発することができます。

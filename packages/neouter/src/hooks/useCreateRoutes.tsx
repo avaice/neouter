@@ -1,7 +1,17 @@
-import { useContext, useMemo } from 'react'
-import { getMatchedPath } from '../'
+import { Fragment, useContext, useEffect, useMemo } from 'react'
+import { getMatchedPath, normalizePathname } from '../'
 import { RouterContext, RouterProvider } from '../context'
 import type { Routes } from '../types'
+
+const ScrollIntoView = ({ children }: { children: React.ReactNode }) => {
+  useEffect(() => {
+    const hash = window.location.hash
+    if (hash) {
+      document.querySelector(hash)?.scrollIntoView()
+    }
+  }, [])
+  return <>{children}</>
+}
 
 const RouteComponent = ({
   routes,
@@ -13,7 +23,15 @@ const RouteComponent = ({
   const { location } = useContext(RouterContext)
   const matchedPath = getMatchedPath(routes, location)
   const Component = matchedPath ? routes[matchedPath]?.component : null
-  return Component ? <Component /> : notFoundComponent
+  const pathname = normalizePathname(location)
+
+  return (
+    <Fragment key={`neouter-${pathname}`}>
+      <ScrollIntoView>
+        {Component ? <Component /> : notFoundComponent}
+      </ScrollIntoView>
+    </Fragment>
+  )
 }
 
 export const useCreateRoutes = ({

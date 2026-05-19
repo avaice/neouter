@@ -3,11 +3,13 @@ import type { Path } from '..'
 import { RouterContext } from '../context'
 
 const Redirect = ({ path }: { path: Path }) => {
-  const { setLocation: _setLocation } = useContext(RouterContext)
+  const { setLocation } = useContext(RouterContext)
   useLayoutEffect(() => {
-    _setLocation(path)
     window.history.replaceState({}, '', path)
-  }, [path, _setLocation])
+    if (!('navigation' in window)) {
+      setLocation(path)
+    }
+  }, [path, setLocation])
   return null
 }
 

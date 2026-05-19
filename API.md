@@ -241,9 +241,32 @@ const matched = getMatchedPath(routes, "/user/123");
 
 **Return value:** `string | null` — The matched path pattern, or `null` if no match.
 
-- Trailing slashes are automatically removed
-- Query strings are stripped before matching
+- The given path is normalized via `normalizePathname` before matching
 - Regular expressions are cached
+
+---
+
+### `normalizePathname`
+
+Normalizes a raw location string into a pathname suitable for route matching.
+
+```tsx
+import { normalizePathname } from "neouter";
+
+normalizePathname("/about/?page=1"); // => "/about"
+normalizePathname("/");              // => "/"
+normalizePathname("");               // => null
+```
+
+| Argument | Type     | Required | Description                                |
+| -------- | -------- | -------- | ------------------------------------------ |
+| `path`   | `string` | Yes      | Raw path (may include a query string)      |
+
+**Return value:** `string | null` — The normalized pathname, or `null` for an empty input.
+
+- The query string (everything from `?`) is stripped
+- A single trailing slash is removed, except for the root path `/`
+- Returns `null` when the input is an empty string
 
 ---
 

@@ -1,0 +1,23 @@
+@keyframes gradientInject {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 100% center;
+  }
+}
+
+.animatedLogo {
+  background: linear-gradient(
+    90deg,
+    #666666 0%,
+    #666666 30%,
+    #2563eb 70%,
+    #1e40af 100%
+  );
+  background-size: 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientInject 2s ease-out forwards;
+}

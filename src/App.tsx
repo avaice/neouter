@@ -1,21 +1,16 @@
 import './global.css'
 import { useCreateRoutes } from 'neouter'
 import { Suspense } from 'react'
-import { Header } from './components/Header'
+import { FullHeightLoading } from './components/FullHeightLoading'
 import { routes } from './routes'
 
 export const App = () => {
   const { Router, RouterProvider } = useCreateRoutes({ routes })
   return (
     <RouterProvider>
-      <div className="mx-auto max-w-[800px] p-4">
-        <Header />
-        <div className="mt-4">
-          <Suspense fallback={<div>Loading...</div>}>
-            <Router />
-          </Suspense>
-        </div>
-      </div>
+      <Suspense fallback={<FullHeightLoading />}>
+        <Router />
+      </Suspense>
     </RouterProvider>
   )
 }

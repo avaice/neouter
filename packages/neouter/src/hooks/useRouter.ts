@@ -7,8 +7,10 @@ export const useRouter = () => {
 
   const setLocation = useCallback(
     (path: Path) => {
-      _setLocation(path)
       window.history.pushState({}, '', path)
+      if (!('navigation' in window)) {
+        _setLocation(path)
+      }
     },
     [_setLocation]
   )

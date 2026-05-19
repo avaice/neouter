@@ -1,4 +1,5 @@
 import type { Path, Routes } from '..'
+import { normalizePathname } from './normalizePathname'
 
 const regexCache = new Map<string, RegExp>()
 const matchPath = (routes: Routes, path: string) => {
@@ -7,7 +8,7 @@ const matchPath = (routes: Routes, path: string) => {
     if (!regexCache.has(routePath)) {
       regexCache.set(
         routePath,
-        new RegExp(`^${routePath.replace(/:(\w+)/g, '(\\w+)')}$`)
+        new RegExp(`^${routePath.replace(/:(\w+)/g, '([^/]+)')}$`)
       )
     }
     // biome-ignore lint/style/noNonNullAssertion: regexes is not null
@@ -21,10 +22,7 @@ const matchPath = (routes: Routes, path: string) => {
 }
 
 export const getMatchedPath = (routes: Routes, path: string): Path | null => {
-  let pathName = path.split('?')[0]
+  const pathName = normalizePathname(path)
   if (!pathName) return null
-  if (pathName.length > 1 && pathName.endsWith('/')) {
-    pathName = pathName.slice(0, -1)
-  }
   return matchPath(routes, pathName)
 }

@@ -4,7 +4,11 @@ Language: [EN](./README.md) / JA
 
 neouter($/njuːtər/$, ニョーター) is type-assisted router for minimalists!
 
+2026年時点での主要ブラウザのbaselineに対応しています。 (Chrome 123+, Firefox 147+, Safari 26.2+)
+それ以前のブラウザでは、ハードナビゲーションとして動作します。
+
 ## インストール
+
 ```bash
 npm i neouter
 ```
@@ -14,12 +18,11 @@ npm i neouter
 詳細は [API リファレンス](./API.ja.md) を参照
 
 ### ルートの定義
+
 ```tsx
 import { useCreateRoutes } from "neouter";
 
-type PathPatterns =
-  | '/'
-  | '/about'
+type PathPatterns = "/" | "/about";
 
 const routes: Record<PathPatterns, { component: () => JSX.Element }> = {
   "/": {
@@ -30,9 +33,9 @@ const routes: Record<PathPatterns, { component: () => JSX.Element }> = {
   },
 };
 
-declare module 'neouter' {
+declare module "neouter" {
   interface Register {
-    pathPatterns: PathPatterns
+    pathPatterns: PathPatterns;
   }
 }
 
@@ -47,6 +50,7 @@ export const App = () => {
 ```
 
 ### リンク
+
 ```tsx
 import { Link } from "neouter";
 

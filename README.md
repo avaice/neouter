@@ -4,6 +4,9 @@ Language: EN / [JA](./README.ja.md)
 
 neouter($/njuːtər/$, ニョーター) is type-assisted router for minimalists!
 
+Supports baseline browsers in 2026 (Chrome 123+, Firefox 147+, Safari 26.2+)
+In earlier browsers, it works as hard navigation.
+
 ## Installation
 
 ```bash
@@ -19,9 +22,7 @@ See the [API Reference](./API.md) for details.
 ```tsx
 import { useCreateRoutes } from "neouter";
 
-type PathPatterns =
-  | '/'
-  | '/about'
+type PathPatterns = "/" | "/about";
 
 const routes: Record<PathPatterns, { component: () => JSX.Element }> = {
   "/": {
@@ -32,9 +33,9 @@ const routes: Record<PathPatterns, { component: () => JSX.Element }> = {
   },
 };
 
-declare module 'neouter' {
+declare module "neouter" {
   interface Register {
-    pathPatterns: PathPatterns
+    pathPatterns: PathPatterns;
   }
 }
 
