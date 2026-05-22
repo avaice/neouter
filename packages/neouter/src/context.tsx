@@ -47,6 +47,12 @@ export const RouterProvider = ({
             normalizePathname(window.location.pathname) &&
           currentPath.search !== destination.search
 
+        const matchedPath = getMatchedPath(routes, nextPath)
+        if(!matchedPath) {
+          window.location.href = e.destination.url
+          return
+        }
+
         e.intercept({
           async handler() {
             if (
@@ -56,7 +62,8 @@ export const RouterProvider = ({
               return
             }
 
-            const matchedPath = getMatchedPath(routes, nextPath)
+            
+
             const Component = matchedPath
               ? routes[matchedPath]?.component
               : null
