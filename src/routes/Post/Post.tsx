@@ -6,7 +6,13 @@ import { Layout } from '../../components/Layout'
 import { getPostData } from '../../loaders/getPostData'
 import { getUsersData } from '../../loaders/getUsersData'
 
-const PostContent = ({ userId, postId }: { userId: number; postId: number }) => {
+const PostContent = ({
+  userId,
+  postId,
+}: {
+  userId: number
+  postId: number
+}) => {
   const { data: post } = useSWR(`post-${postId}`, () => getPostData(postId), {
     suspense: true,
   })

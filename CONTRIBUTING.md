@@ -2,6 +2,10 @@
 
 Contributing are welcome!
 
+## Requirements
+
+- Node.js 24 or later
+
 ## How to Contribute?
 
 Fork this repository to your workspace, make improvements, and then submit a pull request to this repository.
@@ -10,11 +14,13 @@ Please add tests for your changes and ensure they work properly.
 ## Commit Message Rules
 
 ### Format
+
 ```
 <type>: <subject>
 ```
 
 ### Type
+
 - **feat**: New feature
 - **fix**: Bug fix
 - **docs**: Documentation only changes
@@ -24,10 +30,12 @@ Please add tests for your changes and ensure they work properly.
 - **chore**: Changes to the build process or auxiliary tools and libraries
 
 ### Rules
+
 - Subject line should be 50 characters or less
 - Subject line should start with a verb
 - Subject line should start with lowercase
 - Subject line should not end with a period
 
 ### Examples
+
 feat(auth): add user login functionality
