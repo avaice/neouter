@@ -1,4 +1,6 @@
 import type { ExtractParams } from '../types'
+import { getURLPattern } from './getURLPattern'
+import { normalizePathname } from './normalizePathname'
 
 export const extractParams = <
   Path extends string,
@@ -7,21 +9,21 @@ export const extractParams = <
   pathPattern: Path,
   actualPath: string
 ): Record<Params, string> => {
-  const patternParts = pathPattern.split('/')
-  const actualParts = actualPath.split('/')
+  const pathName = normalizePathname(actualPath)
+  const matched = pathName
+    ? getURLPattern(pathPattern).exec({ pathname: pathName })
+    : null
+  if (!matched) {
+    throw new Error('value is nullish')
+  }
 
   const result: Record<string, string> = {}
-
-  patternParts.forEach((part, i) => {
-    if (part.startsWith(':')) {
-      const key = part.slice(1)
-      const value = actualParts[i]
-      if (!value) {
-        throw new Error('value is nullish')
-      }
-      result[key] = value
+  for (const [key, value] of Object.entries(matched.pathname.groups)) {
+    if (!value) {
+      throw new Error('value is nullish')
     }
-  })
+    result[key] = value
+  }
 
   return result
 }

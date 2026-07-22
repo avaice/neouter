@@ -41,7 +41,15 @@ export const Top = () => {
             neouter friends
           </Link>
         </div>
-        <button className='border p-1' onClick={() => location.href = "/api/hoge"}>same-origin-but-out-of-app</button>
+        <button
+          type="button"
+          className="border p-1"
+          onClick={() => {
+            location.href = '/api/hoge'
+          }}
+        >
+          same-origin-but-out-of-app
+        </button>
       </div>
     </div>
   )

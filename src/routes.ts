@@ -1,11 +1,18 @@
 import { lazyImport, type RouteComponent, redirect } from 'neouter'
 import { Top } from './routes/_top/'
 import { About } from './routes/About'
-import { Users } from './routes/Users'
-import { User } from './routes/User'
 import { Post } from './routes/Post'
+import { User } from './routes/User'
+import { Users } from './routes/Users'
 
-type PathPatterns = '/' | '/index.html' | '/about' | '/heavy' | '/users' | `/users/:id` | `/users/:userId/posts/:postId`
+type PathPatterns =
+  | '/'
+  | '/index.html'
+  | '/about'
+  | '/heavy'
+  | '/users'
+  | `/users/:id`
+  | `/users/:userId/posts/:postId`
 
 const { Heavy } = lazyImport(() => import('./routes/Heavy'), 'Heavy')
 

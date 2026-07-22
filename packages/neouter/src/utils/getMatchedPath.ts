@@ -1,28 +1,14 @@
 import type { Path, Routes } from '..'
+import { getURLPattern } from './getURLPattern'
 import { normalizePathname } from './normalizePathname'
-
-const regexCache = new Map<string, RegExp>()
-const matchPath = (routes: Routes, path: string) => {
-  const paths = Object.keys(routes)
-  const regexes = paths.map((routePath) => {
-    if (!regexCache.has(routePath)) {
-      regexCache.set(
-        routePath,
-        new RegExp(`^${routePath.replace(/:(\w+)/g, '([^/]+)')}$`)
-      )
-    }
-    // biome-ignore lint/style/noNonNullAssertion: regexes is not null
-    return regexCache.get(routePath)!
-  })
-
-  const matchedPath = regexes.findIndex((regex) => regex.test(path))
-  if (matchedPath === -1) return null
-
-  return paths[matchedPath] ?? null
-}
 
 export const getMatchedPath = (routes: Routes, path: string): Path | null => {
   const pathName = normalizePathname(path)
   if (!pathName) return null
-  return matchPath(routes, pathName)
+
+  return (
+    Object.keys(routes).find((routePath) =>
+      getURLPattern(routePath).test({ pathname: pathName })
+    ) ?? null
+  )
 }
