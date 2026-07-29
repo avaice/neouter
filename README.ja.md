@@ -73,8 +73,6 @@ Reactでは、任意の場所で`<title>`タグを使用できます。
 https://ja.react.dev/reference/react-dom/components/title
 
 ```tsx
-import { Title } from "neouter";
-
 export const Page = () => {
   return (
     <div>
