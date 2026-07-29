@@ -8,6 +8,7 @@
  *    (hyphens, dots, percent-encoded, multibyte, sub-delims, etc.)
  * 4. Should return null for non-matching paths
  * 5. Should pick the route whose pattern actually matches the path
+ * 6. Should pick the most specific route regardless of declaration order
  *
  * Note: pathname normalization (trailing slash / query string / empty path)
  * is the responsibility of normalizePathname and is covered by its own tests.
@@ -104,4 +105,47 @@ test('getMatchedPath should pick the route whose pattern actually matches the pa
   const result = getMatchedPath(routes, '/user/123/post')
 
   expect(result).toBe('/user/:id/post')
+})
+
+test('getMatchedPath should prefer a static segment over a parameter declared first', () => {
+  const routes: Routes = {
+    '/user/:id': { component: () => null },
+    '/user/new': { component: () => null },
+  } as const
+
+  expect(getMatchedPath(routes, '/user/new')).toBe('/user/new')
+  expect(getMatchedPath(routes, '/user/123')).toBe('/user/:id')
+})
+
+test('getMatchedPath should compare specificity from the leftmost segment', () => {
+  const routes: Routes = {
+    '/:group/settings': { component: () => null },
+    '/user/:section': { component: () => null },
+  } as const
+
+  const result = getMatchedPath(routes, '/user/settings')
+
+  expect(result).toBe('/user/:section')
+})
+
+test('getMatchedPath should prefer a parameter over a wildcard', () => {
+  const routes: Routes = {
+    '/file/*': { component: () => null },
+    '/file/:name': { component: () => null },
+  } as const
+
+  const result = getMatchedPath(routes, '/file/readme')
+
+  expect(result).toBe('/file/:name')
+})
+
+test('getMatchedPath should keep declaration order for equally specific routes', () => {
+  const routes: Routes = {
+    '/post/:slug': { component: () => null },
+    '/post/:id': { component: () => null },
+  } as const
+
+  const result = getMatchedPath(routes, '/post/123')
+
+  expect(result).toBe('/post/:slug')
 })
