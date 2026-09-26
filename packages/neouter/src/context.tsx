@@ -3,6 +3,7 @@ import {
   type Dispatch,
   type SetStateAction,
   useEffect,
+  useLayoutEffect,
   useState,
   useTransition,
 } from 'react'
@@ -26,6 +27,11 @@ export const RouterProvider = ({
   const [location, setLocation] = useState(
     window.location.pathname + window.location.search
   )
+  const [commit, setCommit] = useState<{ resolve: () => void } | null>(null)
+
+  useLayoutEffect(() => {
+    commit?.resolve()
+  }, [commit])
 
   useEffect(() => {
     if ('navigation' in window) {
@@ -48,21 +54,27 @@ export const RouterProvider = ({
           currentPath.search !== destination.search
 
         const matchedPath = getMatchedPath(routes, nextPath)
-        if(!matchedPath) {
+        if (!matchedPath) {
           window.location.href = e.destination.url
           return
         }
+
+        const commitLocation = (update: (apply: () => void) => void) =>
+          new Promise<void>((resolve) => {
+            update(() => {
+              setLocation(nextPath)
+              setCommit({ resolve })
+            })
+          })
 
         e.intercept({
           async handler() {
             if (
               isSearchChange // Do not mark changes that are only query parameters as a transition
             ) {
-              setLocation(nextPath)
+              await commitLocation((apply) => apply())
               return
             }
-
-            
 
             const Component = matchedPath
               ? routes[matchedPath]?.component
@@ -78,9 +90,7 @@ export const RouterProvider = ({
 
             if (e.signal.aborted) return
 
-            startTransition(() => {
-              setLocation(nextPath)
-            })
+            await commitLocation((apply) => startTransition(apply))
           },
         })
       }
